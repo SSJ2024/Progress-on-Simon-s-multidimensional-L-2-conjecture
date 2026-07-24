@@ -1,0 +1,569 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!50!black]{hyperref}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Id}{\mathrm I}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Sd}{\mathbb S^{d-1}}
+\newcommand{\cQ}{\mathcal Q}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cJ}{\mathcal J}
+\newcommand{\cU}{\mathcal U}
+\newcommand{\ip}{\mathrm{ip}}
+\DeclareMathOperator{\Rea}{Re}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}[proposition]{Open problem}
+\newtheorem{remark}[proposition]{Remark}
+
+\title{Stage 3: the exact quadratic return kernel and a radial obstruction to QBC$_1$}
+\author{Working technical note}
+\date{21 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note isolates the first unresolved nonlinear test in the finite-channel programme for Simon's multidimensional $L^2$ conjecture.  For a fixed finite angular model, we derive the first two left-normalized Jost--Volterra coefficients and the first two coefficients of the operator-WKB-gauged radiation column.  The quadratic coefficient of the scalar Grassmannian loss is then decomposed exactly into return paths $0\to n\to0$.  A Green-function identity cancels the factorized part of the second Born term against the Schur quotient $A_{0n}A_{n0}$.  What remains is one ordered oscillatory return kernel and a manifestly nonpositive leakage square.  This identity reveals a decisive radial obstruction: a long weak inner slab followed by a fixed short outer bump makes the energy integral of the positive quadratic coefficient grow like $\Lambda^{1/4}$, while the radial $L^2$ cost remains bounded.  Thus the proposed estimate QBC$_1$ is false already in the scalar radial $d=3$ model.  This does not disprove Simon's conjecture; it rules out the coefficientwise quadratic route and shows that the forward WKB evolution must be retained nonperturbatively.
+\end{abstract}
+
+\noindent
+\fcolorbox{orange!70!black}{orange!7}{\parbox{0.94\textwidth}{
+\textbf{Status.}  Propositions~\ref{prop:volterra-coefficients}, \ref{prop:gauged-expansion}, and \ref{prop:return-kernel} are algebraic consequences of the finite-model ODE.  Theorem~\ref{thm:two-slab} disproves QBC$_1$ as stated.  The counterexample concerns an auxiliary quadratic estimate, not Simon's conjecture and not the possibility of a direct nonperturbative gauged theorem at physical coupling.
+}}
+
+\section{Finite angular model and normalization}
+
+Fix a real orthonormal angular basis $Y_0,Y_1,\dots,Y_{m-1}$, with
+\begin{equation}
+ Y_0=|\Sd|^{-1/2}.
+\end{equation}
+Let $D=\operatorname{diag}(d_0,\dots,d_{m-1})$ be the corresponding centrifugal matrix.  On the exterior half-line $(1,\infty)$ consider
+\begin{equation}
+ H_{\alpha}=-\partial_r^2+\frac{D}{r^2}+\alpha V_m(r),
+ \qquad
+ V_m(r)=\bigl(v_{ij}(r)\bigr)_{i,j=0}^{m-1},
+ \label{eq:finite-model}
+\end{equation}
+with Dirichlet boundary condition at $r=1$.  The potential is real symmetric and is supported in a finite interval $[R,T]\Subset(1,\infty)$.  We will ultimately require estimates independent of $T$ and $m$.
+
+For channel $j$, let $f_j(r,k)$ be the outgoing solution of
+\begin{equation}
+ -f_j''+\frac{d_j}{r^2}f_j=k^2f_j,
+\end{equation}
+normalized so that, for real $k>0$, its incoming conjugate satisfies
+\begin{equation}
+ W(\overline{f_j},f_j)=2ik.
+\end{equation}
+Let $s_j(r,k)$ be the regular Dirichlet solution,
+\begin{equation}
+ s_j(1,k)=0,
+ \qquad s_j'(1,k)=1,
+ \qquad j_j(k):=f_j(1,k).
+\end{equation}
+On the positive axis,
+\begin{equation}
+ s_j(r,k)=\frac{\overline{j_j(k)}f_j(r,k)-j_j(k)\overline{f_j(r,k)}}{2ik}.
+ \label{eq:regular-jost}
+\end{equation}
+For $r<t$, the outgoing Volterra kernel in channel $j$ is
+\begin{equation}
+ G_j(r,t;k)
+ =\frac{f_j(r,k)s_j(t,k)-s_j(r,k)f_j(t,k)}{j_j(k)}.
+ \label{eq:green-factorization}
+\end{equation}
+It obeys $G_j(1,t;k)=s_j(t,k)$ and, in the free constant channel, reduces to $\sin(k(t-r))/k$ after a harmless phase normalization.
+
+Write
+\begin{equation}
+ F_0(r,k)=\operatorname{diag}(f_0(r,k),\dots,f_{m-1}(r,k)),
+ \qquad
+ J_0(k)=F_0(1,k)=\operatorname{diag}(j_0,\dots,j_{m-1}).
+\end{equation}
+All products below retain the displayed order.
+
+\section{Exact Jost--Volterra coefficients}
+
+The outgoing matrix solution for~\eqref{eq:finite-model} satisfies
+\begin{equation}
+ F_\alpha(r,k)=F_0(r,k)
+ +\alpha\int_r^T G_0(r,t;k)V_m(t)F_\alpha(t,k)\dd t,
+ \label{eq:jost-volterra}
+\end{equation}
+where $G_0$ is diagonal with entries $G_j$.  Put
+\begin{equation}
+ J_\alpha(k)=F_\alpha(1,k),
+ \qquad
+ \cJ_\alpha(k)=J_0(k)^{-1}J_\alpha(k)
+ =\Id+\alpha A(k)+\alpha^2B(k)+O(\alpha^3).
+ \label{eq:left-normalization}
+\end{equation}
+
+\begin{proposition}[First two left-normalized coefficients]
+\label{prop:volterra-coefficients}
+For $0\leq i,j\leq m-1$,
+\begin{align}
+ A_{ij}(k)
+ &=\frac1{j_i(k)}\int_R^T
+ s_i(r,k)v_{ij}(r)f_j(r,k)\dd r,
+ \label{eq:Aij}\\
+ B_{ij}(k)
+ &=\frac1{j_i(k)}\sum_{n=0}^{m-1}
+ \int_{R<r<t<T}
+ s_i(r,k)v_{in}(r)G_n(r,t;k)v_{nj}(t)f_j(t,k)
+ \dd t\dd r.
+ \label{eq:Bij}
+\end{align}
+In particular, $B_{00}$ is a sum of return paths $0\to n\to0$ and contains only $v_{0n}=v_{n0}$; no coefficient $v_{ij}$ with $i,j>0$ occurs.
+\end{proposition}
+
+\begin{proof}
+Iterate~\eqref{eq:jost-volterra} twice and evaluate the resulting expansion at $r=1$.  Since $G_i(1,r;k)=s_i(r,k)$, left multiplication by $J_0^{-1}$ gives~\eqref{eq:Aij} and~\eqref{eq:Bij}.  Setting $i=j=0$ in~\eqref{eq:Bij} proves the last assertion.
+\end{proof}
+
+\section{The WKB gauge and its complex coefficients}
+
+The real-axis quadratic logarithmic coefficient can be computed from $A$ and $B$, but the Hardy-space step requires the analytic gauge itself.  Starting at $r=R$, let
+\begin{align}
+ 2ik\,\partial_rU_\alpha(r,k)
+ &=\left(\frac{D}{r^2}+\alpha V_m(r)\right)U_\alpha(r,k),
+ &U_\alpha(R,k)&=\Id,\label{eq:forward-U}\\
+ 2ik\,\partial_rU_0(r,k)
+ &=\frac{D}{r^2}U_0(r,k),
+ &U_0(R,k)&=\Id.
+\end{align}
+Define the relative forward evolution
+\begin{equation}
+ Z_\alpha(T,k)=U_0(T,k)^{-1}U_\alpha(T,k).
+\end{equation}
+With
+\begin{equation}
+ M_k(r)=\frac1{2ik}U_0(r,k)^{-1}V_m(r)U_0(r,k),
+ \label{eq:interaction-M}
+\end{equation}
+the interaction-picture equation is
+\begin{equation}
+ \partial_rZ_\alpha(r,k)=\alpha M_k(r)Z_\alpha(r,k),
+ \qquad Z_\alpha(R,k)=\Id.
+\end{equation}
+Consequently
+\begin{align}
+ Z_\alpha(T,k)
+ &=\Id+\alpha C(k)+\alpha^2D_2(k)+O(\alpha^3),\label{eq:Z-expansion}\\
+ C(k)&=\int_R^T M_k(r)\dd r,\label{eq:C}\\
+ D_2(k)&=\int_{R<s<r<T}M_k(r)M_k(s)\dd s\dd r.
+ \label{eq:D2}
+\end{align}
+
+Let
+\begin{equation}
+ w_\alpha(k)=\cJ_\alpha(k)^{-1}e_0,
+ \qquad
+ g_\alpha(k)=Z_\alpha(T,k)^{-1}w_\alpha(k).
+ \label{eq:gauged-column}
+\end{equation}
+
+\begin{proposition}[First two gauged coefficients]
+\label{prop:gauged-expansion}
+The gauged column has the analytic expansion
+\begin{equation}
+ g_\alpha=e_0+\alpha g^{(1)}+\alpha^2g^{(2)}+O(\alpha^3),
+\end{equation}
+where
+\begin{align}
+ g^{(1)}&=-(A+C)e_0,\label{eq:g1}\\
+ g^{(2)}&=\bigl(A^2-B+CA+C^2-D_2\bigr)e_0.
+ \label{eq:g2}
+\end{align}
+For real $k>0$, $Z_\alpha(T,k)$ is unitary and hence
+\begin{equation}
+ \|g_\alpha(k)\|=\|w_\alpha(k)\|.
+ \label{eq:gauge-norm-invariance}
+\end{equation}
+In the radial $d=3$ constant channel, $C=(2ik)^{-1}\int_R^Tq$ and~\eqref{eq:g1} removes precisely the nonoscillatory forward term from $A$.
+\end{proposition}
+
+\begin{proof}
+Invert~\eqref{eq:left-normalization} and~\eqref{eq:Z-expansion}:
+\begin{align}
+ \cJ_\alpha^{-1}
+ &=\Id-\alpha A+\alpha^2(A^2-B)+O(\alpha^3),\\
+ Z_\alpha^{-1}
+ &=\Id-\alpha C+\alpha^2(C^2-D_2)+O(\alpha^3).
+\end{align}
+Their product gives~\eqref{eq:g1}--\eqref{eq:g2}.  For real $k$, the generators in~\eqref{eq:forward-U} are skew-adjoint because $D$ and $V_m$ are self-adjoint.  Thus $U_0$, $U_\alpha$, and $Z_\alpha$ are unitary.  In the radial $d=3$ constant channel, $D=0$ and the stated formula for $C$ follows directly from~\eqref{eq:interaction-M}.
+\end{proof}
+
+\section{Exact quotient cancellation at quadratic order}
+
+The scalar Grassmannian amplification is
+\begin{equation}
+ \widetilde\Gamma_\alpha(k)=\|\cJ_\alpha(k)^{-1}e_0\|^{-1}.
+\end{equation}
+Writing $\beta=A_{00}$, direct inversion gives
+\begin{equation}
+ \log\widetilde\Gamma_\alpha(k)
+ =\alpha\Rea\beta+\alpha^2\cQ_{R,m,T}(k)+O(\alpha^3),
+ \label{eq:log-expansion}
+\end{equation}
+where
+\begin{equation}
+ \cQ_{R,m,T}
+ =(\Rea\beta)^2-\frac12\|Ae_0\|^2
+ -\Rea\langle e_0,(A^2-B)e_0\rangle.
+ \label{eq:Q-original}
+\end{equation}
+Equivalently,
+\begin{equation}
+ \cQ_{R,m,T}
+ =\frac12\left.\frac{\partial^2}{\partial\alpha^2}
+ \log\widetilde\Gamma_\alpha\right|_{\alpha=0}.
+ \label{eq:second-variation}
+\end{equation}
+
+For each channel set $v_n(r)=v_{n0}(r)=v_{0n}(r)$ and define
+\begin{align}
+ p_n(r,k)&=\frac{s_0(r,k)f_n(r,k)}{j_0(k)},\label{eq:p}\\
+ q_n(r,k)&=\frac{s_n(r,k)f_0(r,k)}{j_n(k)},\label{eq:q}\\
+ z_n(r,t;k)&=\frac{s_0(r,k)s_n(r,k)f_n(t,k)f_0(t,k)}{j_0(k)j_n(k)},
+ \qquad r<t.
+ \label{eq:z}
+\end{align}
+Then $A_{0n}=\int p_nv_n$, $A_{n0}=\int q_nv_n$, and the $n$th term of $B_{00}$ is denoted $B_{00}^{(n)}$.
+
+\begin{proposition}[Exact channelwise return-kernel identity]
+\label{prop:return-kernel}
+For the constant-channel return,
+\begin{equation}
+ \Rea\left(B_{00}^{(0)}-\frac12A_{00}^2\right)
+ =-\Rea\int_{R<r<t<T}z_0(r,t;k)v_0(r)v_0(t)\dd t\dd r.
+ \label{eq:Q0-return}
+\end{equation}
+For every $n>0$,
+\begin{align}
+ &\Rea\left(B_{00}^{(n)}-A_{0n}A_{n0}\right)
+ -\frac12|A_{n0}|^2\notag\\
+ &\quad=-\Rea\int_{R<r<t<T}
+ \bigl[p_n(t,k)q_n(r,k)+z_n(r,t;k)\bigr]
+ v_n(r)v_n(t)\dd t\dd r
+ -\frac12\left|\int_R^Tq_n(r,k)v_n(r)\dd r\right|^2.
+ \label{eq:Qn-return}
+\end{align}
+Moreover,
+\begin{equation}
+ p_n(t,k)q_n(r,k)+z_n(r,t;k)
+ =\frac{s_n(r,k)f_n(t,k)}{j_n(k)}
+  \frac{s_0(t,k)f_0(r,k)+s_0(r,k)f_0(t,k)}{j_0(k)}.
+ \label{eq:return-factor}
+\end{equation}
+Thus the only non-manifestly-negative quadratic contribution is a time-ordered oscillatory return kernel.
+\end{proposition}
+
+\begin{proof}
+From~\eqref{eq:green-factorization}, the $n$th kernel in~\eqref{eq:Bij} satisfies, for $r<t$,
+\begin{align}
+ \frac{s_0(r)G_n(r,t)f_0(t)}{j_0}
+ &=\frac{s_0(r)f_n(r)}{j_0}
+   \frac{s_n(t)f_0(t)}{j_n}
+ -\frac{s_0(r)s_n(r)f_n(t)f_0(t)}{j_0j_n}\notag\\
+ &=p_n(r)q_n(t)-z_n(r,t).
+ \label{eq:key-green-cancellation}
+\end{align}
+For $n=0$, one has $p_0=q_0$.  The first term on the right of~\eqref{eq:key-green-cancellation}, integrated over $r<t$, is exactly one half of $A_{00}^2$; the diagonal has two-dimensional Lebesgue measure zero.  This proves~\eqref{eq:Q0-return}.
+
+For $n>0$, subtract the full product
+\begin{equation}
+ A_{0n}A_{n0}=\int_{[R,T]^2}p_n(r)q_n(t)v_n(r)v_n(t)\dd t\dd r.
+\end{equation}
+The $r<t$ part cancels the first term in~\eqref{eq:key-green-cancellation}.  Interchanging $r$ and $t$ in the remaining $r>t$ part yields
+\begin{equation}
+ B_{00}^{(n)}-A_{0n}A_{n0}
+ =-\int_{r<t}[p_n(t)q_n(r)+z_n(r,t)]v_n(r)v_n(t)\dd t\dd r.
+\end{equation}
+The final term in~\eqref{eq:Qn-return} is the $n$th summand of $-\frac12\|Q_0Ae_0\|^2$.  Formula~\eqref{eq:return-factor} follows from~\eqref{eq:p}--\eqref{eq:z}.
+\end{proof}
+
+\section{The reduced quadratic target}
+
+Define
+\begin{align}
+ \cR_{0;T}(k)
+ &:=-\Rea\int_{R<r<t<T}z_0(r,t;k)v_0(r)v_0(t)\dd t\dd r,
+ \label{eq:R0}\\
+ \cR_{n;T}(k)
+ &:=-\Rea\int_{R<r<t<T}
+ \frac{s_n(r,k)f_n(t,k)}{j_n(k)}\notag\\
+ &\qquad\times
+ \frac{s_0(t,k)f_0(r,k)+s_0(r,k)f_0(t,k)}{j_0(k)}
+ v_n(r)v_n(t)\dd t\dd r,
+ \quad n>0.
+ \label{eq:Rn}
+\end{align}
+
+\begin{corollary}[Rigorous reduction of QBC$_1$]
+\label{cor:reduced-qbc}
+For every finite model,
+\begin{equation}
+ \cQ_{R,m,T}(k)
+ =\cR_{0;T}(k)+\sum_{n=1}^{m-1}\cR_{n;T}(k)
+ -\frac12\sum_{n=1}^{m-1}
+ \left|\int_R^Tq_n(r,k)v_n(r)\dd r\right|^2.
+ \label{eq:Q-reduced}
+\end{equation}
+Consequently
+\begin{equation}
+ [\cQ_{R,m,T}(k)]_+
+ \leq
+ \left[\cR_{0;T}(k)+\sum_{n=1}^{m-1}\cR_{n;T}(k)\right]_+.
+ \label{eq:drop-negative-square}
+\end{equation}
+If the angular model is the complete cutoff through degree $L$, Parseval gives
+\begin{equation}
+ \sum_{n=0}^{m_L-1}|v_n(r)|^2
+ =\frac1{|\Sd|}\|P_LV(r,\cdot)\|_2^2
+ \leq\frac1{|\Sd|}\|V(r,\cdot)\|_2^2.
+ \label{eq:column-parseval}
+\end{equation}
+Thus it is sufficient to control the ordered return forms~\eqref{eq:R0}--\eqref{eq:Rn} by their vector-valued radial $L^2$ input.
+\end{corollary}
+
+\begin{proof}
+The block expansion of~\eqref{eq:Q-original} is
+\begin{equation}
+ \cQ_{R,m,T}
+ =\Rea\left(B_{00}^{(0)}-\frac12A_{00}^2\right)
+ +\sum_{n=1}^{m-1}
+ \left\{\Rea(B_{00}^{(n)}-A_{0n}A_{n0})-\frac12|A_{n0}|^2\right\}.
+\end{equation}
+Apply Proposition~\ref{prop:return-kernel}.  The last sum in~\eqref{eq:Q-reduced} is nonpositive, proving~\eqref{eq:drop-negative-square}.  Finally,
+\begin{equation}
+ v_n(r)=\langle Y_n,V(r,\cdot)Y_0\rangle
+ =|\Sd|^{-1/2}\langle Y_n,V(r,\cdot)\rangle,
+\end{equation}
+and Parseval proves~\eqref{eq:column-parseval}.
+\end{proof}
+
+\begin{problem}[Airy-uniform ordered return estimate]
+\label{prob:airy-qbc}
+Prove, for every compact $K\Subset(0,\infty)$,
+\begin{equation}
+ \sup_L\int_K\sup_{T>R}
+ \left[\cR_{0;T}(k)+\sum_{n=1}^{m_L-1}\cR_{n;T}(k)\right]_+\dd k
+ \leq C_K\sum_{n\geq0}\int_R^\infty|v_n(r)|^2\dd r,
+ \label{eq:reduced-QBC}
+\end{equation}
+with $C_K$ independent of $R$, $T$, and $L$.  By~\eqref{eq:column-parseval}, this implies the original quotient-normalized quadratic estimate with cost
+\begin{equation}
+ \frac{C_K}{|\Sd|}\int_R^\infty\|V(r,\cdot)\|_2^2\dd r.
+\end{equation}
+\end{problem}
+
+\section{First stress test: the long weak radial slab}
+
+In $d=3$, the constant channel has no centrifugal term.  Choose the harmless phase normalization
+\begin{equation}
+ f_0(r,k)=e^{ik(r-1)},
+ \qquad j_0(k)=1,
+ \qquad s_0(r,k)=\frac{\sin(k(r-1))}{k}.
+\end{equation}
+Then~\eqref{eq:R0} becomes
+\begin{equation}
+ \cR_{0;T}(k)
+ =-\Rea\int_{R<r<t<T}
+ s_0(r,k)^2e^{2ik(t-1)}q(r)q(t)\dd t\dd r.
+ \label{eq:radial-return}
+\end{equation}
+
+\begin{proposition}[The long weak slab does not break the quadratic kernel]
+\label{prop:slab-test}
+Let $q(r)=a\,\mathbf1_{[A,A+\ell]}(r)$ and $K=[k_0,k_1]\Subset(0,\infty)$.  Uniformly in $A$, $\ell$, and the truncation endpoint $T$,
+\begin{equation}
+ \sup_{k\in K}|\cR_{0;T}(k)|
+ \leq \frac{|a|^2\ell}{k_0^3}
+ =\frac1{k_0^3}\int_A^{A+\ell}|q(r)|^2\dd r.
+ \label{eq:slab-bound}
+\end{equation}
+Thus the slab that destroys the ungauged $L^1$ normalization and the raw same-shell estimate is harmless at the exact quadratic return level.
+\end{proposition}
+
+\begin{proof}
+For every $r$ and $T$,
+\begin{equation}
+ \left|\int_r^T a e^{2ik(t-1)}\mathbf1_{[A,A+\ell]}(t)\dd t\right|
+ \leq\frac{|a|}{k_0}.
+\end{equation}
+Also $|s_0(r,k)|\leq k_0^{-1}$.  Insert both bounds into~\eqref{eq:radial-return} and integrate $|a|$ over an interval of length at most $\ell$.
+\end{proof}
+
+\section{Decisive stress test: two separated slabs}
+
+A single slab is harmless because its accumulated mass is paired with an oscillatory integral over the same slab.  A later bump changes the situation: the long slab supplies a large nonoscillatory factor through $s_0^2$, while the bump supplies a separate outgoing oscillation.  The positive part in energy does not average this product to zero.
+
+\begin{lemma}[Positive-part oscillatory averaging]
+\label{lem:positive-average}
+Let $K=[k_0,k_1]$ and let $w$ be a continuous positive function on $K$.  Then
+\begin{equation}
+ \lim_{\lambda\to\infty}
+ \int_K[-w(k)\cos(\lambda k)]_+\dd k
+ =\frac1\pi\int_Kw(k)\dd k.
+ \label{eq:positive-average}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The $2\pi$-periodic function $[-\cos\theta]_+$ has mean $1/\pi$.  Approximate $w$ uniformly by a step function on finitely many subintervals.  On each subinterval, the average of $[-\cos(\lambda k)]_+$ converges to $1/\pi$ as the number of periods tends to infinity.  The uniform approximation error is bounded by $|K|\|w-w_{\rm step}\|_\infty$.  First let $\lambda\to\infty$ and then refine the step approximation.
+\end{proof}
+
+\begin{theorem}[Radial two-slab counterexample to QBC$_1$]
+\label{thm:two-slab}
+Fix a nontrivial compact interval $K=[k_0,k_1]\Subset(0,\infty)$ and choose
+\begin{equation}
+ 0<\delta<\frac{\pi}{k_1},
+ \qquad b>0,
+ \qquad A>R>1.
+\end{equation}
+For $\Lambda\geq1$, put
+\begin{align}
+ a_\Lambda&=\Lambda^{-3/4},
+ &B_\Lambda&=A+\Lambda+1,\label{eq:two-slab-parameters}\\
+ q_\Lambda(r)
+ &=a_\Lambda\mathbf1_{[A,A+\Lambda]}(r)
+ +b\mathbf1_{[B_\Lambda,B_\Lambda+\delta]}(r).
+ \label{eq:two-slab-potential}
+\end{align}
+These potentials are real, bounded uniformly in $\Lambda$, and compactly supported, with
+\begin{equation}
+ \int_R^\infty|q_\Lambda(r)|^2\dd r
+ =\Lambda^{-1/2}+b^2\delta.
+ \label{eq:two-slab-cost}
+\end{equation}
+Nevertheless, for the scalar radial quadratic coefficient and the truncation endpoint $T_\Lambda=B_\Lambda+\delta$,
+\begin{equation}
+ \int_K[\cQ_{R,1,T_\Lambda}(k)]_+\dd k
+ \longrightarrow\infty.
+ \label{eq:two-slab-divergence}
+\end{equation}
+Consequently no constant $C_K$ can make QBC$_1$ hold uniformly in the radial truncation, even with one angular channel in $d=3$.
+\end{theorem}
+
+\begin{proof}
+Decompose~\eqref{eq:radial-return} into the inner self-interaction, the inner--outer cross term, and the outer self-interaction.  The cross term is
+\begin{equation}
+ \cC_\Lambda(k)
+ =-a_\Lambda b\,I_\Lambda(k)\Rea J_\Lambda(k),
+ \label{eq:cross-term}
+\end{equation}
+where
+\begin{align}
+ I_\Lambda(k)
+ &=\int_A^{A+\Lambda}s_0(r,k)^2\dd r\notag\\
+ &=\frac{\Lambda}{2k^2}
+ -\frac{\sin(2k(A+\Lambda-1))-\sin(2k(A-1))}{4k^3}
+ =\frac{\Lambda}{2k^2}+O_K(1),
+ \label{eq:inner-mass}\\
+ J_\Lambda(k)
+ &=\int_{B_\Lambda}^{B_\Lambda+\delta}e^{2ik(t-1)}\dd t\notag\\
+ &=e^{i(2k(B_\Lambda-1)+k\delta)}\frac{\sin(k\delta)}{k}.
+ \label{eq:outer-wave}
+\end{align}
+The choice of $\delta$ makes $\sin(k\delta)>0$ on $K$.  Hence
+\begin{equation}
+ \cC_\Lambda(k)
+ =-\Lambda^{1/4}w(k)
+ \cos\!\left(\lambda_\Lambda k\right)+O_K(\Lambda^{-3/4}),
+ \label{eq:cross-asymptotic}
+\end{equation}
+uniformly on $K$, where
+\begin{equation}
+ w(k)=\frac{b\sin(k\delta)}{2k^3}>0,
+ \qquad
+ \lambda_\Lambda=2(B_\Lambda-1)+\delta\longrightarrow\infty.
+\end{equation}
+Lemma~\ref{lem:positive-average} and the Lipschitz property of $x\mapsto[x]_+$ give
+\begin{equation}
+ \int_K[\cC_\Lambda(k)]_+\dd k
+ =c_{K,b,\delta}\Lambda^{1/4}+o(\Lambda^{1/4}),
+ \qquad
+ c_{K,b,\delta}
+ =\frac{b}{2\pi}\int_K\frac{\sin(k\delta)}{k^3}\dd k>0.
+ \label{eq:cross-positive-growth}
+\end{equation}
+
+Proposition~\ref{prop:slab-test}, applied separately to the two slabs, yields
+\begin{align}
+ \int_K|\cQ_{\rm inner}(k)|\dd k
+ &\leq |K|k_0^{-3}a_\Lambda^2\Lambda
+ =O_K(\Lambda^{-1/2}),\label{eq:inner-self-bound}\\
+ \int_K|\cQ_{\rm outer}(k)|\dd k
+ &\leq |K|k_0^{-3}b^2\delta
+ =O_{K,b,\delta}(1).
+ \label{eq:outer-self-bound}
+\end{align}
+Since $[x+y]_+\geq[x]_+-|y|$,
+\begin{align}
+ \int_K[\cQ_{R,1,T_\Lambda}(k)]_+\dd k
+ &\geq\int_K[\cC_\Lambda(k)]_+\dd k
+ -\|\cQ_{\rm inner}\|_{L^1(K)}
+ -\|\cQ_{\rm outer}\|_{L^1(K)}\notag\\
+ &\longrightarrow\infty.
+\end{align}
+This contradicts QBC$_1$ because its proposed right-hand side remains bounded by~\eqref{eq:two-slab-cost}.
+\end{proof}
+
+\begin{remark}[Small physical tails do not rescue QBC$_1$]
+Multiplying every $q_\Lambda$ by a fixed factor $\varepsilon>0$ multiplies both the quadratic coefficient and the $L^2$ cost by $\varepsilon^2$, so the divergent ratio is unchanged.  The counterexample therefore persists at arbitrarily small $L^2$ tail norm.  What fails is the uniform Taylor coefficient, not smallness of the physical coupling.
+\end{remark}
+
+\section{Why Airy analysis is no longer the next step}
+
+If channel $n$ has Bessel order $\nu_n$, its turning surface is $kr\simeq\nu_n$.  Problem~\ref{prob:airy-qbc} should be split using a fixed large constant $C$ into
+\begin{align}
+ \text{propagating: }&\quad kr\geq\nu_n+C\nu_n^{1/3},\notag\\
+ \text{turning: }&\quad |kr-\nu_n|\leq C\nu_n^{1/3},\label{eq:airy-split}\\
+ \text{evanescent: }&\quad kr\leq\nu_n-C\nu_n^{1/3}.
+\end{align}
+The regular and outgoing factors in~\eqref{eq:Rn} must be estimated as a combined quotient-normalized kernel.  In particular, a separate supremum bound on $s_n$ or $f_n/j_n$ is not an admissible proof near~\eqref{eq:airy-split}.
+
+Before Theorem~\ref{thm:two-slab}, the next candidate lemma was the following vector-valued estimate.
+
+\begin{problem}[Turning-window square function]
+For the portion of~\eqref{eq:Rn} in which at least one radial variable lies in the turning window~\eqref{eq:airy-split}, prove
+\begin{equation}
+ \int_K\sup_T
+ \left[\sum_{n\leq m_L}\cR_{n;T}^{\mathrm{turn}}(k)\right]_+\dd k
+ \leq C_K\sum_{n\leq m_L}\|v_n\|_{L^2(R,\infty)}^2,
+ \label{eq:turning-square-function}
+\end{equation}
+uniformly in $L$.  The expected tools are uniform Olver--Airy asymptotics, almost-orthogonality of the turning windows in $(k,r,n)$, and a $TT^*$ estimate that retains the order restriction $r<t$.
+\end{problem}
+
+Theorem~\ref{thm:two-slab} shows that this Airy estimate cannot prove QBC$_1$ as stated, because the target already fails in the constant channel where no turning point is present.  Airy analysis becomes relevant again only after a new nonperturbative or shell-local renormalization has removed the separated-slab phase-conversion mechanism.
+
+\section{What has and has not been achieved}
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=3pt]
+\small
+ \item The symbolic combination $A$, $B$, and $A^2-B$ has been replaced by explicit Bessel--Volterra kernels with fixed left normalization.
+ \item The WKB-gauged coefficients needed off the real axis are now explicit in~\eqref{eq:g1}--\eqref{eq:g2}; real-axis norm invariance alone must not be used on the rest of the Hardy boundary.
+ \item At quadratic order, only the full constant-channel column $v_{n0}$ is charged.  This is exactly the scalar angular $L^2$ cost and is uniform in the angular cutoff by~\eqref{eq:column-parseval}.
+ \item The factorized part of the second Born return cancels exactly against the Schur quotient.  Dropping the remaining leakage square is safe because it is manifestly nonpositive.
+ \item The long weak radial slab passes the reduced quadratic test.
+ \item A long weak slab followed by a short outer bump disproves the cutoff-uniform quadratic estimate~\eqref{eq:reduced-QBC}, and hence QBC$_1$, before any Airy turning analysis is needed.
+ \item The obstruction is a failure of uniform perturbation theory: the inner slab produces a large Taylor coefficient through its accumulated $L^1$ phase, although the exact forward evolution has unit norm at physical energies.  It does not constitute a counterexample to the full nonlinear spectral statement.
+ \item The next viable target is a dressed one-shell estimate at physical coupling.  The exact forward evolution accumulated on earlier shells must conjugate the interaction on the current shell before any expansion is made.  The desired logarithmic increment must have a local quadratic cost plus a flux term that telescopes between adjacent shells.  Only after this nonperturbative radial obstruction is removed should the cutoff-uniform Airy estimate~\eqref{eq:turning-square-function} be revisited.
+\end{enumerate}
+\normalsize
+
+\end{document}

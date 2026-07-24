@@ -1,0 +1,696 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!50!black]{hyperref}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Id}{\mathrm I}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\HS}{\mathrm{HS}}
+\DeclareMathOperator{\arsinh}{arsinh}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}[proposition]{Open problem}
+\newtheorem{remark}[proposition]{Remark}
+
+\title{Stage 4: physical-coupling resummation and the dressed Grassmannian shell}
+\author{Working technical note}
+\date{21 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The failure of the coefficientwise quadratic estimate QBC$_1$ does not signal
+an instability of the physical Schr\"odinger evolution.  We prove this
+directly in the radial scalar model.  The exact forward phase can be removed
+without changing real-axis flux; the remaining reflection variable evolves
+inside the unit disk by a Riccati equation, and its hyperbolic entropy obeys an
+exact transfer identity.  The classical one-dimensional quadratic trace
+inequality then gives the required compact-energy entropy bound at physical
+coupling.  In particular, the two-slab family that makes the quadratic Taylor
+coefficient diverge has a uniformly bounded exact Jost entropy.  We also prove
+the dual Pl\"ucker identity
+\[
+ \Gamma_P(J)=\|\mathop{\bigwedge}\nolimits^N(J^{-1}P)\|^{-1},
+\]
+which identifies the correct $N$-frame for a direct nonlinear attack.  A
+\emph{differential} quotient identity for multiplicative cocycles then cancels the
+high--high generator exactly and leaves only the charged low column paired
+with a dressed Grassmannian regression state.  A
+$U(m,m)$ matrix-ball identity supplies the exact full-determinant prototype,
+but also exposes the remaining difficulty: its trace cost includes the
+uncharged high--high block.  The next live theorem is therefore a
+flux-corrected, fixed-$N$ Grassmannian shell estimate for the gauged inverse
+frame, not another coefficientwise Born bound.
+\end{abstract}
+
+\noindent
+\fcolorbox{blue!65!black}{blue!5}{\parbox{0.94\textwidth}{
+\textbf{Status.}  The dual Pl\"ucker identity, scalar gauge equations, flux
+identity, scalar physical-coupling entropy theorem, uniform control of the
+two-slab family, differential high--high cancellation, and the $U(m,m)$
+matrix-ball identity are proved below.  The
+fixed-$N$ relative shell inequality is formulated precisely but remains open.
+No claim about Simon's conjecture is made in this note.
+}}
+
+\section{What the failed quadratic test actually says}
+
+For the radial $d=3$ potential
+\begin{equation}
+ q_\Lambda(r)=\Lambda^{-3/4}\mathbf 1_{[A,A+\Lambda]}(r)
+ +b\mathbf 1_{[A+\Lambda+1,A+\Lambda+1+\delta]}(r),
+ \label{eq:two-slab-potential}
+\end{equation}
+the positive energy integral of the second Taylor coefficient of the gauged
+Jost logarithm grows like $\Lambda^{1/4}$, while
+\begin{equation}
+ \int_1^\infty |q_\Lambda(r)|^2\dd r
+ =\Lambda^{-1/2}+b^2\delta.
+ \label{eq:two-slab-cost}
+\end{equation}
+This disproves QBC$_1$.  It does not imply that the exact Jost function at
+coupling one grows.  Indeed, the long slab produces a forward phase of size
+$\Lambda^{1/4}$.  Expanding that phase in the coupling before composing it
+with the outer reflector creates the divergent cross coefficient.  Keeping
+the phase exponentiated prevents this nonuniform interchange of the limits
+$\alpha\to0$ and $\Lambda\to\infty$.
+
+The replacement target must therefore satisfy three rules:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+ \item it is stated directly at the physical coupling $\alpha=1$;
+ \item it removes the complete forward evolution before estimating reflection;
+ \item it propagates a flux or Grassmannian state between shells, so that an
+ outer reflection is not treated as an arbitrary independent coefficient.
+\end{enumerate}
+
+\section{The exact dual Pl\"ucker frame}
+
+Let $P$ be the orthogonal projection onto the first $N$ coordinates of
+$\C^m$, let $Q=\Id-P$, and let $J\in\mathrm{GL}(m,\C)$.  As in the main
+programme, put
+\begin{equation}
+ \Gamma_P(J)
+ :=\frac{|\det J|}
+ {\|\bigwedge^{m-N}(QJ)\|}.
+ \label{eq:Gamma-def}
+\end{equation}
+Here the exterior norm is the Euclidean norm of all maximal minors of the
+displayed rectangular matrix.
+
+\begin{proposition}[Dual Pl\"ucker identity]
+\label{prop:dual-plucker}
+For every $J\in\mathrm{GL}(m,\C)$,
+\begin{equation}
+ \frac{\|\bigwedge^{m-N}(QJ)\|}{|\det J|}
+ =\|\bigwedge^N(J^{-1}P)\|.
+ \label{eq:dual-plucker}
+\end{equation}
+Equivalently,
+\begin{equation}
+ \Gamma_P(J)
+ =\|\bigwedge^N(J^{-1}P)\|^{-1}
+ =\det\!\left(PJ^{-*}J^{-1}P\big|_{P\C^m}\right)^{-1/2}.
+ \label{eq:Gamma-inverse-frame}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Choose the standard coordinate bases adapted to $P\oplus Q$.  For every
+$N$-element row set $T$, Jacobi's complementary-minor identity gives
+\begin{equation}
+ \det (J^{-1})_{T,P}
+ =\pm\frac{\det J_{Q,T^c}}{\det J}.
+ \label{eq:jacobi-complement}
+\end{equation}
+Squaring the moduli and summing over $T$, the Cauchy--Binet formula identifies
+the left collection with the coordinates of
+$\bigwedge^N(J^{-1}P)$ and the right collection with those of
+$\bigwedge^{m-N}(QJ)/\det J$.  This proves~\eqref{eq:dual-plucker}.
+The Gram determinant formula for an exterior volume proves
+\eqref{eq:Gamma-inverse-frame}.
+\end{proof}
+
+\begin{remark}[Why this matters]
+The general target is now an honest analytic exterior vector,
+\begin{equation}
+ \mathfrak g_P(k)=\bigwedge^N\!\left(J(k)^{-1}P\right)
+ \in\bigwedge^N\C^m,
+ \qquad
+ \log\Gamma_P(k)=-\log\|\mathfrak g_P(k)\|.
+ \label{eq:dual-exterior-vector}
+\end{equation}
+It has no distinguished-minor denominator.  For $N=1$ this reduces to
+$\Gamma_P=\|J^{-1}e_0\|^{-1}$, but
+Proposition~\ref{prop:dual-plucker} works for every fixed $N$.
+\end{remark}
+
+\section{Differential quotient flux and exact high--high cancellation}
+
+The dual identity has an infinitesimal counterpart that already passes the
+first low/high algebra test.  Let $J(r)\in\mathrm{GL}(m,\C)$ solve a
+left-multiplicative cocycle
+\begin{equation}
+ J'(r)=\mathcal A(r)J(r),
+ \qquad
+ \mathcal A=
+ \begin{pmatrix}
+  \mathcal A_{PP}&\mathcal A_{PQ}\\
+  \mathcal A_{QP}&\mathcal A_{QQ}
+ \end{pmatrix}
+ \label{eq:left-cocycle}
+\end{equation}
+relative to $P\oplus Q$.  Put
+\begin{align}
+ X&=PJ,&Y&=QJ,&S&=YY^*,
+ \label{eq:XY}\\
+ C&=XY^*S^{-1},&E&=X-CY,&\Sigma&=EE^*.
+ \label{eq:regression-frame}
+\end{align}
+The matrix $C:Q\C^m\to P\C^m$ is the least-squares Grassmannian regression
+coordinate of the low rows against the high rows.  Unlike a chosen minor, it
+is globally defined whenever $J$ is invertible, since $Y$ has full row rank.
+
+\begin{proposition}[Exact differential Grassmannian flux]
+\label{prop:differential-flux}
+With the notation above,
+\begin{align}
+ EY^*&=0,
+ &\Gamma_P(J)^2&=\det\Sigma,
+ \label{eq:residual-volume}\\
+ \Sigma'
+ &=\mathcal B\Sigma+\Sigma\mathcal B^*,
+ &\mathcal B&=\mathcal A_{PP}-C\mathcal A_{QP},
+ \label{eq:Sigma-evolution}\\
+ \frac{\dd}{\dd r}\log\Gamma_P(J(r))
+ &=\Re\operatorname{tr}\!\left(
+ \mathcal A_{PP}-C\mathcal A_{QP}\right).
+ \label{eq:differential-Gamma}
+\end{align}
+In particular, neither $\mathcal A_{QQ}$ nor $\mathcal A_{PQ}$ appears
+directly in the logarithmic increment.  The displayed generator contains only
+the charged column $\mathcal A P$; all high--high evolution is absorbed into
+the dressed state $C$.
+\end{proposition}
+
+\begin{proof}
+The definition of $C$ gives $EY^*=0$.  The Schur complement of $S=YY^*$ in
+$JJ^*$ is
+\begin{equation}
+ XX^*-XY^*S^{-1}YX^*=EE^*=\Sigma.
+ \label{eq:Schur-Sigma}
+\end{equation}
+Hence
+\begin{equation}
+ |\det J|^2=\det S\det\Sigma,
+ \end{equation}
+which proves~\eqref{eq:residual-volume}.  From~\eqref{eq:left-cocycle},
+\begin{align}
+ X'&=\mathcal A_{PP}X+\mathcal A_{PQ}Y,
+ &Y'&=\mathcal A_{QP}X+\mathcal A_{QQ}Y.
+ \end{align}
+Substitute $X=CY+E$ into $E'=X'-C'Y-CY'$.  The result has the form
+\begin{equation}
+ E'=(\mathcal A_{PP}-C\mathcal A_{QP})E+\mathcal K Y
+ \label{eq:E-evolution}
+\end{equation}
+for a matrix $\mathcal K$ whose value is immaterial.  Since $EY^*=0$, the
+$\mathcal K Y$ terms vanish in $E'E^*+EE'^*$, proving
+\eqref{eq:Sigma-evolution}.  Taking one half of the logarithmic determinant
+derivative and using~\eqref{eq:residual-volume} proves
+\eqref{eq:differential-Gamma}.
+\end{proof}
+
+\begin{corollary}[$2\times2$ low/high model]
+\label{cor:two-channel-flux}
+Let $m=2$, $N=1$, write the rows of $J$ as $x,y\in\C^{1\times2}$, and set
+\begin{equation}
+ c=\frac{xy^*}{\|y\|^2}.
+ \end{equation}
+Then
+\begin{equation}
+ \Gamma_P(J)=\|x-cy\|,
+ \qquad
+ \frac{\dd}{\dd r}\log\Gamma_P(J)
+ =\Re(\mathcal A_{11}-c\mathcal A_{21}).
+ \label{eq:two-channel-flux}
+\end{equation}
+Thus an arbitrary high--high entry $\mathcal A_{22}$ cancels exactly.  The
+remaining analytic task is to control the physical-coupling product
+$c\mathcal A_{21}$ after the complete forward gauge, averaged in energy.
+\end{corollary}
+
+\begin{remark}[What is and is not proved]
+Proposition~\ref{prop:differential-flux} gives the desired quotient
+bookkeeping for a multiplicative $m\times m$ cocycle.  The radial
+Schr\"odinger equation is second order, so its shell transfer first lives in a
+$2m$-dimensional phase space.  One must still identify the corresponding
+Jost/Grassmannian chart and prove that elliptic buffered channels can be
+eliminated without changing the safe cost.  The proposition supplies the
+algebraic model for that reduction; it is not yet the buffered-shell theorem.
+\end{remark}
+
+\section{Exact scalar forward gauge and reflected state}
+
+Consider the scalar half-line equation
+\begin{equation}
+ -f''(r)+q(r)f(r)=k^2f(r),
+ \qquad r>1,
+ \label{eq:scalar-schrodinger}
+\end{equation}
+where $q$ is real and supported in $[1,T]$.  With $x=r-1$, write the outgoing
+Jost solution as
+\begin{equation}
+ f(r,k)=a(r,k)e^{ikx}+b(r,k)e^{-ikx},
+ \qquad a(T,k)=1,\quad b(T,k)=0,
+ \label{eq:ab-representation}
+\end{equation}
+and impose the usual variation-of-constants constraint.  Then
+\begin{align}
+ a'&=p\bigl(a+b e^{-2ikx}\bigr),
+ &b'&=-p\bigl(ae^{2ikx}+b\bigr),
+ &p(r,k)&=\frac{q(r)}{2ik}.
+ \label{eq:ab-system}
+\end{align}
+
+Define the complete forward phase and the gauged amplitudes by
+\begin{equation}
+ \theta(r,k)=\int_r^T p(s,k)\dd s,
+ \qquad
+ \alpha=e^\theta a,
+ \qquad
+ \beta=e^{-\theta}b.
+ \label{eq:scalar-gauge}
+\end{equation}
+
+\begin{proposition}[Exact gauged system and flux]
+\label{prop:scalar-gauge}
+The gauged variables solve
+\begin{align}
+ \alpha'
+ &=p e^{2\theta}e^{-2ikx}\beta,
+ &\beta'
+ &=-p e^{-2\theta}e^{2ikx}\alpha,
+ \label{eq:gauged-ab}
+\end{align}
+with $(\alpha,\beta)(T)=(1,0)$.  For real $k>0$,
+\begin{equation}
+ |\alpha(r,k)|^2-|\beta(r,k)|^2
+ =|a(r,k)|^2-|b(r,k)|^2=1.
+ \label{eq:scalar-flux}
+\end{equation}
+Consequently $\rho=\beta/\alpha$ lies in the unit disk and satisfies
+\begin{align}
+ \rho'
+ &=-p e^{-2\theta}e^{2ikx}
+   -p e^{2\theta}e^{-2ikx}\rho^2,
+ &\rho(T,k)&=0,
+ \label{eq:rho-riccati}\\
+ (\log\alpha)'
+ &=p e^{2\theta}e^{-2ikx}\rho.
+ \label{eq:log-alpha}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Differentiate~\eqref{eq:scalar-gauge}, use $\theta'=-p$, and substitute
+\eqref{eq:ab-system}; the diagonal terms cancel exactly.  The Wronskian
+$W(\overline f,f)$ is constant and equals $2ik$ at $T$, which proves
+\eqref{eq:scalar-flux}.  Since $\theta$ is purely imaginary on the real axis,
+the gauge does not change the two moduli.  Dividing the two equations in
+\eqref{eq:gauged-ab} gives~\eqref{eq:rho-riccati} and
+\eqref{eq:log-alpha}.
+\end{proof}
+
+At the boundary, the scalar Jost function is
+\begin{equation}
+ J_q(k)=f(1,k)
+ =e^{-\theta(1,k)}\alpha(1,k)
+  \bigl(1+e^{2\theta(1,k)}\rho(1,k)\bigr).
+ \label{eq:J-rho}
+\end{equation}
+The flux identity therefore gives the exact bound
+\begin{equation}
+ \log^+|J_q(k)|
+ \leq \log2-\frac12\log\bigl(1-|\rho(1,k)|^2\bigr).
+ \label{eq:J-hyperbolic-bound}
+\end{equation}
+This is the first nonlinear replacement for the failed Taylor coefficient.
+
+\section{Scalar physical-coupling closure}
+
+Let $a_q(k):=a(1,k)$ be the full-line transmission denominator associated
+with the compactly supported extension of $q$ by zero to $(-\infty,1]$.
+The flux relation gives
+\begin{equation}
+ |a_q(k)|^2-|b(1,k)|^2=1,
+ \qquad
+ |J_q(k)|\leq |a_q(k)|+|b(1,k)|\leq2|a_q(k)|.
+ \label{eq:J-versus-a}
+\end{equation}
+The Deift--Killip transmission estimate, a consequence of the
+one-dimensional second trace formula, is
+\begin{equation}
+ \int_\R k^2\log|a_q(k)|\dd k
+ \leq\frac{\pi}{8}\int_\R|q(r)|^2\dd r.
+ \label{eq:deift-killip}
+\end{equation}
+Since $\log|a_q|\geq0$, for each
+$K=[k_0,k_1]\Subset(0,\infty)$ this gives
+\begin{equation}
+ \int_K\log|a_q(k)|\dd k
+ \leq \frac{\pi}{8k_0^2}\int_\R |q(r)|^2\dd r
+ =:C_K\int_\R |q(r)|^2\dd r.
+ \label{eq:second-trace-local}
+\end{equation}
+For compact bounded real potentials this follows from the classical trace
+identity after discarding the bound-state contribution, which has the
+favourable sign.  Approximation extends the inequality to real $L^2$
+potentials.
+
+\begin{theorem}[Exact scalar entropy at coupling one]
+\label{thm:scalar-physical}
+For every real compactly supported $q\in L^2(1,\infty)$ and every
+$K=[k_0,k_1]\Subset(0,\infty)$,
+\begin{equation}
+ \int_K\log^+|J_q(k)|\dd k
+ \leq |K|\log2+C_K\int_1^\infty|q(r)|^2\dd r.
+ \label{eq:scalar-physical-entropy}
+\end{equation}
+The constant is independent of the support radius.
+\end{theorem}
+
+\begin{proof}
+Combine~\eqref{eq:J-versus-a} with~\eqref{eq:second-trace-local}.
+\end{proof}
+
+\begin{remark}
+This closes the decoupled radial $m=N=1$ entropy problem nonperturbatively.
+It does \emph{not} close the manuscript's $N=1$ problem, where the constant
+spherical harmonic is coupled to arbitrarily many angular channels and the
+safe cost must exclude the high--high block.
+\end{remark}
+
+\begin{theorem}[The QBC$_1$ two-slab family is physically bounded]
+\label{thm:two-slab-physical}
+Fix $K=[k_0,k_1]\Subset(0,\infty)$, $A>1$, $\delta>0$, and
+$0<b<k_0^2/2$.  For the potentials~\eqref{eq:two-slab-potential},
+\begin{equation}
+ \sup_{\Lambda\geq\Lambda_0}\sup_{k\in K}|J_{q_\Lambda}(k)|<\infty,
+ \qquad
+ \sup_{\Lambda\geq\Lambda_0}
+ \int_K\log^+|J_{q_\Lambda}(k)|\dd k<\infty.
+ \label{eq:two-slab-uniform}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For a constant potential $c<k_0^2$ on an interval of length $h$, backward
+propagation of the physical state $(f,f')^T$ is given by
+\begin{equation}
+ P_c(h,k)=
+ \begin{pmatrix}
+  \cos(\kappa h)&-\kappa^{-1}\sin(\kappa h)\\
+  \kappa\sin(\kappa h)&\cos(\kappa h)
+ \end{pmatrix},
+ \qquad \kappa=(k^2-c)^{1/2}.
+ \label{eq:constant-transfer}
+\end{equation}
+For $k\in K$, $c=b$, and $c=\Lambda^{-3/4}$ with $\Lambda$ large,
+$\kappa$ remains in a fixed compact subinterval of $(0,\infty)$.  Hence the
+norm of~\eqref{eq:constant-transfer} is bounded independently of $h$.
+Free propagation has the same property.  The complete two-slab transfer is a
+product of a fixed number of such matrices: a fixed free collar, the long weak
+slab, the unit gap, and the fixed outer slab.  Its norm is uniform in
+$\Lambda$ and $k$.  The outgoing terminal state has uniformly bounded norm,
+so its first component at $r=1$, namely $J_{q_\Lambda}(k)$, is uniformly
+bounded.  The entropy assertion follows immediately.
+\end{proof}
+
+Theorem~\ref{thm:two-slab-physical} is stronger for this family than the
+integrated trace bound: it is pointwise in energy.  It rigorously identifies
+the QBC$_1$ divergence as a Taylor nonuniformity.
+
+\section{Exact shell composition in the scalar model}
+
+In the forward/backward amplitude basis, the transfer through any real scalar
+shell has the $SU(1,1)$ form
+\begin{equation}
+ M=\begin{pmatrix}u&v\\ \overline v&\overline u\end{pmatrix},
+ \qquad |u|^2-|v|^2=1.
+ \label{eq:su11}
+\end{equation}
+If $z_{\rm out}=b_{\rm out}/a_{\rm out}\in\mathbb D$, then
+\begin{equation}
+ z_{\rm in}
+ =\frac{\overline v+\overline u z_{\rm out}}
+ {u+v z_{\rm out}}.
+ \label{eq:mobius}
+\end{equation}
+Direct subtraction gives
+\begin{equation}
+ 1-|z_{\rm in}|^2
+ =\frac{1-|z_{\rm out}|^2}{|u+v z_{\rm out}|^2}.
+ \label{eq:disk-identity}
+\end{equation}
+Thus, for the hyperbolic flux entropy
+\begin{equation}
+ \cH(z):=-\log(1-|z|^2),
+ \label{eq:hyperbolic-entropy}
+\end{equation}
+one has the exact dressed increment
+\begin{equation}
+ \cH(z_{\rm in})-\cH(z_{\rm out})
+ =2\log|u+v z_{\rm out}|.
+ \label{eq:exact-shell-increment}
+\end{equation}
+
+Equation~\eqref{eq:exact-shell-increment} explains why the incoming reflected
+state must remain inside the estimate.  Replacing it by $|u|+|v|$, or taking
+positive parts before shells are composed, loses the phase correlation that
+the trace formula exploits.  Even though
+\begin{equation}
+ |u+vz|\leq |u|+|v|=\exp(\arsinh|v|),
+ \label{eq:bad-majorant}
+\end{equation}
+the right side is linear in a small reflection amplitude and therefore cannot
+in general be summed against a quadratic $L^2$ cost.  The exact logarithm, its
+energy dependence, and the flux telescoping are all essential.
+
+\section{The full matrix prototype and its limitation}
+
+Let
+\begin{equation}
+ \mathbb M=\begin{pmatrix}A&B\\C&D\end{pmatrix}\in U(m,m),
+ \qquad
+ \mathbb M^*\begin{pmatrix}\Id&0\\0&-\Id\end{pmatrix}\mathbb M
+ =\begin{pmatrix}\Id&0\\0&-\Id\end{pmatrix}.
+ \label{eq:umm}
+\end{equation}
+For a matrix reflection state $R$ in the open matrix ball
+$\Id-R^*R>0$, define
+\begin{equation}
+ R'=(C+DR)(A+BR)^{-1}.
+ \label{eq:matrix-mobius}
+\end{equation}
+
+\begin{proposition}[$U(m,m)$ flux identity]
+\label{prop:umm-flux}
+Whenever~\eqref{eq:matrix-mobius} is defined,
+\begin{equation}
+ \Id-R'^*R'
+ =(A+BR)^{-*}(\Id-R^*R)(A+BR)^{-1}.
+ \label{eq:matrix-ball-identity}
+\end{equation}
+Consequently
+\begin{equation}
+ -\log\det(\Id-R'^*R')
+ +\log\det(\Id-R^*R)
+ =2\log|\det(A+BR)|.
+ \label{eq:matrix-hyperbolic-increment}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The $U(m,m)$ relations imply
+\begin{align}
+ &(A+BR)^*(A+BR)-(C+DR)^*(C+DR)
+ =\Id-R^*R.
+ \label{eq:umm-subtraction}
+\end{align}
+Multiply on the left by $(A+BR)^{-*}$ and on the right by
+$(A+BR)^{-1}$ to obtain~\eqref{eq:matrix-ball-identity}.  Taking determinants
+proves~\eqref{eq:matrix-hyperbolic-increment}.
+\end{proof}
+
+This is the exact noncommutative analogue of
+\eqref{eq:exact-shell-increment}.  Applied to all $m$ channels, however, its
+quadratic trace coefficient is the full matrix cost
+\begin{equation}
+ \operatorname{tr}(M_V^2)=\|M_V\|_{\HS}^2,
+ \label{eq:unsafe-full-cost}
+\end{equation}
+which contains the uncharged high--high block.  The desired Grassmannian
+coefficient is only
+\begin{equation}
+ \operatorname{tr}(PM_V^2P)=\|M_VP\|_{\HS}^2.
+ \label{eq:safe-low-column-cost}
+\end{equation}
+Thus Proposition~\ref{prop:umm-flux} is a prototype, not the answer.  The
+fixed-$N$ theorem must be a relative or quotient version built from the dual
+frame in Proposition~\ref{prop:dual-plucker}.
+
+\section{The next live theorem}
+
+For a truncated angular model and a radial cutoff $T$, define the analytic
+inverse frame
+\begin{equation}
+ G_{P;R,L,T}(k)=J_{R,L,T}(k)^{-1}P,
+ \qquad
+ \mathfrak g_{P;R,L,T}(k)=\bigwedge^N G_{P;R,L,T}(k).
+ \label{eq:inverse-frame}
+\end{equation}
+Let $Z_{R,L,T}(k)$ denote the exact relative operator-WKB forward evolution.
+On the real axis $Z$ is unitary.  Therefore the gauged exterior frame
+\begin{equation}
+ \widetilde{\mathfrak g}_{P;R,L,T}(k)
+ =\bigwedge^N\!\left(Z_{R,L,T}(k)^{-1}G_{P;R,L,T}(k)\right)
+ \label{eq:gauged-inverse-frame}
+\end{equation}
+has the same boundary norm and
+\begin{equation}
+ \log\Gamma_{P;R,L,T}(k)
+ =-\log\|\widetilde{\mathfrak g}_{P;R,L,T}(k)\|.
+ \label{eq:Gamma-gauged-frame}
+\end{equation}
+
+The direct physical-coupling Hardy target is:
+\begin{problem}[Gauged exterior Hardy theorem $\mathrm{GVH}_N^{\rm phys}$]
+\label{prob:gvhn-physical}
+For every fixed $N$ and compact $K\Subset(0,\infty)$, choose a complex
+neighbourhood $\Omega_K$ and $k_*\in\Omega_K$.  Under a sufficiently small
+$X_d$ tail, prove uniformly in $R,L,T$ that
+\begin{align}
+ \|\widetilde{\mathfrak g}_{P;R,L,T}(k_*)\|
+ &\geq c_{K,N}>0,
+ \label{eq:gvhn-interior}\\
+ \int_{\partial\Omega_K}
+ \|\widetilde{\mathfrak g}_{P;R,L,T}(k)\|^2
+ \dd\omega_*(k)
+ &\leq C_{K,N}\bigl(1+\cE_N(V)\bigr),
+ \label{eq:gvhn-boundary}\\
+ \cE_N(V)
+ &:=\int_R^\infty\|M_{V(r)}P_N\|_{\HS}^2\dd r.
+ \label{eq:EN}
+\end{align}
+Then subharmonicity of
+$\log\|\widetilde{\mathfrak g}_{P;R,L,T}\|$ and
+\eqref{eq:Gamma-gauged-frame} give PSR$_N$.
+\end{problem}
+
+The shell route should prove the same conclusion without expanding in the
+coupling.  Divide the tail into buffered shells $\cS_j$ and let
+\begin{equation}
+ \Delta_j(k)
+ :=\log\Gamma_P^{(j)}(k)-\log\Gamma_P^{(j+1)}(k)
+ \label{eq:relative-shell-increment}
+\end{equation}
+be the exact change when shell $j$ is attached to the already dressed outer
+tail.  The required local statement is:
+\begin{problem}[Dressed Grassmannian shell estimate]
+\label{prob:dressed-shell}
+Construct a nonnegative flux functional $\cF_j$, depending on the exact
+incoming gauged Grassmannian state, such that
+\begin{equation}
+ \int_K[\Delta_j(k)]_+\dd k
+ \leq C_{K,N}\int_{\cS_j^+}
+ \|M_{V(r)}P_N\|_{\HS}^2\dd r
+ +\cF_j-\cF_{j+1},
+ \label{eq:dressed-shell-target}
+\end{equation}
+uniformly in the angular cutoff and shell radius.  Here $\cS_j^+$ is the
+shell together with the fixed impact-parameter buffer.  The functional must
+reduce to the hyperbolic reflected flux in
+\eqref{eq:hyperbolic-entropy}--\eqref{eq:exact-shell-increment} in the scalar
+model and must not charge the high--high block.
+\end{problem}
+
+\section{Immediate falsification programme}
+
+Before any Airy estimate is attempted, a candidate for
+\eqref{eq:dressed-shell-target} must pass the following tests.
+\begin{enumerate}[label=\textbf{Test \arabic*.},leftmargin=*]
+ \item \textbf{Two separated slabs.}  The exact forward phase of the long
+ slab must remain exponentiated, and the bound must be uniform for
+ \eqref{eq:two-slab-potential}.
+ \item \textbf{Many weak coherent reflectors.}  No absolute summation of
+ individual reflection amplitudes is allowed.  The estimate must use energy
+ averaging and flux telescoping, since coherent transfer can be large at one
+ energy while the $L^2$ sum rule remains integrated in energy.
+ \item \textbf{A $2\times2$ low/high model.}  The multiplicative model passes
+ this test by Corollary~\ref{cor:two-channel-flux}: the high--high generator
+ cancels exactly.  The phase-space lift must reproduce the same cancellation
+ and contain only $\|M_VP\|_{\HS}^2$.
+ \item \textbf{Zeros and chart changes.}  The formulation must use the norm
+ of the full exterior vector, or a matrix-ball invariant, rather than divide
+ by one Grassmannian coordinate.
+ \item \textbf{Turning channels last.}  Only after Tests 1--4 survive should
+ the proof be made uniform for $\nu\sim kr$ using the Airy buffer.
+\end{enumerate}
+
+The first $2\times2$ multiplicative calculation is now complete: its flux is
+the residual Gram determinant in Proposition~\ref{prop:differential-flux}.
+The next concrete calculation is its $4\times4$ Schr\"odinger phase-space
+lift with one retained channel, an arbitrary unitary high-channel forward
+cocycle, and small low-column coupling.  Its purpose is to determine whether
+the residual determinant descends through the elliptic Schur complement.  If
+it does, the following step is an energy-square-function estimate for the
+exact nonlinear factor $C\mathcal A_{QP}$.
+
+\section{Conclusion}
+
+The failed QBC$_1$ test has now produced a sharper positive result.  The
+physical scalar evolution is controlled, the two-slab obstruction disappears
+after exact resummation, the general Pl\"ucker quotient is the reciprocal
+volume of a concrete inverse frame, and its multiplicative differential
+identity cancels the high--high generator exactly.  The main unresolved step is no longer
+``control higher Born terms.''  It is:
+\begin{quote}
+Find the fixed-$N$ flux on the gauged inverse Grassmannian frame, prove one
+buffered-shell inequality with only the low-column $L^2$ cost, and retain its
+energy dependence without coefficientwise expansion.
+\end{quote}
+This is narrower than the former quadratic programme and has an immediate
+$4\times4$ phase-space falsification test.
+
+\begin{thebibliography}{9}
+
+\bibitem{DeiftTrubowitz1979}
+P.~Deift and E.~Trubowitz,
+\emph{Inverse scattering on the line},
+Comm. Pure Appl. Math. \textbf{32} (1979), 121--251.
+
+\bibitem{DeiftKillip1999}
+P.~Deift and R.~Killip,
+\emph{On the absolutely continuous spectrum of one-dimensional Schr\"odinger operators with square summable potentials},
+Comm. Math. Phys. \textbf{203} (1999), 341--347.
+\url{https://doi.org/10.1007/s002200050615}
+
+\end{thebibliography}
+
+\end{document}

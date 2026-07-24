@@ -1,0 +1,647 @@
+\section{A fixed-potential Riesz--Talbot counterexample to the buffered
+$N=1$ entropy route}
+\label{app:riesz-talbot-fixed-counterexample}
+
+The preceding converter restrictions leave one genuinely nonlinear escape:
+concentrate the selected angular state on a set of exponentially small area,
+apply a translated reflector there, and use reciprocity to refocus the
+transmitted state.  This section proves that the escape is real.  It gives a
+single bounded zonal scalar potential in $X_3$ for which the selected
+$N=1$ entropy diverges along every cofinal positively smoothed, radially
+truncated, double-buffered diagonal.  The result disproves the proposed
+fixed-potential selected-channel theorem.  It does not determine the spectral
+multiplicity of the limiting operator and therefore does not disprove Simon's
+conjecture.
+
+\subsection{Translated barriers and the exact Hardy isometry}
+
+\begin{lemma}[Translated-barrier Hardy isometry]
+\label{lem:translated-barrier-hardy}
+Let $\mathcal H$ be finite dimensional.  Suppose that $A,B\in
+\mathcal B(\mathcal H)$ satisfy
+\begin{equation}
+ A^*A-B^*B=\Id,\qquad A\text{ is invertible},\qquad
+ \|BA^{-1}\|<1,
+ \label{eq:barrier-flux-data}
+\end{equation}
+and let $S$ be unitary.  For $|z|<1$ put
+\begin{equation}
+ F(z)=(A+zSB)^{-1}.
+ \label{eq:barrier-hardy-function}
+\end{equation}
+Then
+\begin{equation}
+ \frac1{2\pi}\int_0^{2\pi}
+ F(e^{i\phi})^*F(e^{i\phi})\dd\phi=\Id,
+ \label{eq:barrier-hardy-isometry}
+\end{equation}
+and consequently, for every $y\ne0$,
+\begin{equation}
+ \frac1{2\pi}\int_0^{2\pi}
+ \log\frac{\|y\|}{\|F(e^{i\phi})y\|}\dd\phi\geq0.
+ \label{eq:barrier-hardy-nonnegative-loss}
+\end{equation}
+
+Let $P$ be an orthogonal projection fixed by conjugation and let
+\begin{equation}
+ A=\Id+(\cosh\rho-1)P,\qquad B=(\sinh\rho)P,\qquad \rho>0.
+ \label{eq:localized-hyperbolic-barrier}
+\end{equation}
+If $S\bar y=y$ and, for some $|\lambda|=1$,
+\begin{equation}
+ \|(\Id-P)y\|+\|\bar y-\lambda y\|
+ \leq\epsilon\|y\|,
+ \label{eq:localized-phase-real-state}
+\end{equation}
+then
+\begin{equation}
+ \frac1{2\pi}\int_0^{2\pi}
+ \log\frac{\|y\|}{\|F(e^{i\phi})y\|}\dd\phi
+ \geq\log\cosh\rho-C_\rho\epsilon.
+ \label{eq:localized-barrier-positive-loss}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set $C=BA^{-1}$ and $T=SC$.  Factoring on the right gives
+\begin{equation}
+ F(z)=A^{-1}(\Id+zT)^{-1}
+ =A^{-1}\sum_{n\geq0}(-zT)^n.
+\end{equation}
+The flux identity gives
+\begin{equation}
+ A^{-*}A^{-1}=\Id-C^*C=\Id-T^*T.
+\end{equation}
+Parseval and telescoping therefore yield
+\begin{equation}
+ \frac1{2\pi}\int F^*F
+ =\sum_{n\geq0}T^{*n}(\Id-T^*T)T^n=\Id.
+\end{equation}
+Jensen applied to $\log\|F(e^{i\phi})y\|^2$ proves
+\eqref{eq:barrier-hardy-nonnegative-loss}.
+
+If $Py=y$ and $\bar y=\lambda y$, then $Sy=\bar\lambda y$ and
+\begin{equation}
+ F(e^{i\phi})y
+ =\frac{y}{\cosh\rho+
+   e^{i\phi}\bar\lambda\sinh\rho}.
+\end{equation}
+The phase mean of the logarithm of the denominator is
+$\log\cosh\rho$.  In the approximate case the inverse in
+\eqref{eq:barrier-hardy-function} has norm at most $e^\rho$.
+The resolvent identity and~\eqref{eq:localized-phase-real-state} compare
+$F(e^{i\phi})y$ uniformly with the preceding scalar expression with error
+$C_\rho\epsilon\|y\|$.  Both norms lie between fixed multiples of $\|y\|$,
+so the logarithm is uniformly Lipschitz and
+\eqref{eq:localized-barrier-positive-loss} follows.
+\end{proof}
+
+\subsection{Radial realization at summable charged cost}
+
+The angular operators constructed later in this section are realized by one
+scalar radial cell as follows.
+The order in which the scales are chosen is important.  First fix the finite
+incoming angular space, the number of Riesz factors, the desired error, and
+the finite integer ratios between their frequencies.  Next choose the weak
+slab lengths.  Only then choose a common odd carrier so large that all of the
+frequencies are simultaneously far above the inverse radial scale while the
+entire cell remains far below the square of the smallest frequency.  This
+leaves room for both the forward and reverse Talbot flights.
+
+\begin{proposition}[A scalar reciprocal Riesz cell]
+\label{prop:scalar-reciprocal-riesz-cell}
+Let $K\Subset(0,\infty)$, let $\mathcal K$ be a finite-dimensional,
+conjugation-invariant zonal space containing $e_0$, and fix $m\geq1$,
+$\rho>0$, and $\epsilon>0$.  Outside any prescribed radius $R_-$ there is a
+bounded, compactly supported, real zonal potential $v_{m,\epsilon}$ with
+vanishing spherical mean at every radius such that the following hold.
+
+\begin{enumerate}
+ \item At a chosen tuning point $k_\star\in\operatorname{int}K$, its forward
+ Riesz train, localized hyperbolic reflector, and reverse train satisfy the
+ hypotheses of Proposition~\ref{prop:robust-reciprocal-cascade} on
+ $\mathcal K$, with cell error at most $\epsilon$.
+ \item If $s=k_\star/k$, the error is at most
+ \begin{equation}
+   C_{K,\mathcal K}m|s-1|+\epsilon.
+   \label{eq:physical-riesz-cell-chromatic-error}
+ \end{equation}
+ \item Inserting a sufficiently distant free collar before the cell changes
+ its transfer, up to error $\epsilon$, only through the scalar circle phase
+ $z=e^{i\vartheta(k)}$; the derivative of $\vartheta$ may be made arbitrarily
+ large, uniformly on $K$.
+ \item Its charged cost obeys
+ \begin{equation}
+  \int\!\int_{\mathbb S^2}|v_{m,\epsilon}(r,\omega)|^2
+       \dd\omega\dd r
+  \leq C_\rho e^{-c m}+\epsilon.
+  \label{eq:physical-riesz-cell-cost}
+ \end{equation}
+\end{enumerate}
+The supports of any prescribed countable collection of such cells can be
+chosen disjoint.
+\end{proposition}
+
+\begin{proof}
+We give the scale ledger, including the two approximations used repeatedly
+below.  On a slab $[R,R+T]$ put $T^{-1}w(\omega)$, where $w$ is a fixed
+finite-band real multiplier of degree at most $D$.  Variation of constants,
+uniformly for $k\in K$, gives
+\begin{align}
+ \mathsf T_{T,w}(k)
+ &=\exp\!\left(-\frac{i}{2k}w\right)
+   +O_K\!\left(T^{-1}+\frac{D^2T}{R^2}+\frac{T}{R}\right),
+ \label{eq:long-weak-mask-transmission}\\
+ \mathsf R_{T,w}(k)
+ &=O_K\!\left(T^{-1}+\frac{D^2T}{R^2}+\frac{T}{R}\right),
+ \label{eq:long-weak-mask-reflection}\\
+ \int_R^{R+T}\|T^{-1}w\|_2^2\dd r
+ &=T^{-1}\|w\|_2^2.
+ \label{eq:long-weak-mask-cost}
+\end{align}
+The first error is the one-dimensional long-weak-slab error, the second comes
+from the angular generator on the slab, and the third from replacing $r$ by
+$R$.  The estimates also hold after one $k$ derivative.  On a free collar
+$[r_0,r_1]$, the outgoing evolution on every fixed angular block is
+\begin{equation}
+ \exp\!\left[-\frac{iA_3}{2k}
+       \left(\frac1{r_0}-\frac1{r_1}\right)\right]
+ +O_K(r_0^{-1}),
+ \label{eq:free-collar-angular-flight}
+\end{equation}
+with the error uniform after the block has been fixed.  These are the standard
+Volterra and outgoing Hankel asymptotics; their uniformity is exactly the
+finite-block uniformity imposed in the statement.
+
+Apply Proposition~\ref{prop:talbot-riesz-concentration} and first record its
+finite odd frequency ratios $1=q_1<\cdots<q_m=Q$.  Choose the mask-slab
+lengths so large that the sum of~\eqref{eq:long-weak-mask-cost}, except for
+the reflector, is below $\epsilon/10$.  Now choose a common odd carrier
+$L_\ast$ so large that, with $L_t=L_\ast q_t$ and with $T_{\max}$ the largest
+slab length, there is a radial interval satisfying
+\begin{equation}
+ R_-+\operatorname{length}(\text{cell})\ll R,\qquad
+ QL_\ast\sqrt{T_{\max}}\ll R\ll L_\ast^2.
+ \label{eq:riesz-cell-scale-separation}
+\end{equation}
+This interval is nonempty once $L_\ast\gg Q\sqrt{T_{\max}}$.  Thus the
+centrifugal error in every weak mask slab tends to zero, while
+\eqref{eq:free-collar-angular-flight} can realize both
+$\pi/(2L_t^2)$ and $3\pi/(2L_t^2)$ in the forward and reverse trains.  A
+successive enlargement of $L_\ast$, $R$, and the slab lengths makes the sum
+of all transmission, reflection, spherical-Talbot, and outgoing errors below
+$\epsilon$.
+
+At the focus insert a fixed smooth radial bump $Q_0$ multiplying
+\begin{equation}
+ \chi_m-\langle\chi_m\rangle_{\mathbb S^2}.
+ \label{eq:mean-zero-localized-reflector}
+\end{equation}
+Choose the bump strength so that the induced two-port coefficient on the
+concentrated state is~\eqref{eq:localized-hyperbolic-barrier}.  Subtracting
+the spherical mean changes only the scalar channel; a compensating
+reflectionless scalar phase slab absorbs that change.  Equations
+\eqref{eq:riesz-concentration}--\eqref{eq:riesz-small-support-cost} and the
+stability of finite-dimensional transfer matrices show that the resulting
+cell has error $O(\epsilon+e^{-cm})$ and reflector cost $C_\rho e^{-cm}$.
+All masks have zero mean because the frequencies are odd, and
+\eqref{eq:mean-zero-localized-reflector} has zero mean by construction.
+
+The reverse train gives~\eqref{eq:riesz-refocusing}; differentiating the
+finite product in $s=k_\star/k$ gives
+\eqref{eq:physical-riesz-cell-chromatic-error}.  A free collar of length
+comparable to its starting radius conjugates the reflection coefficient by
+$e^{2ikd}$, while its angular action is
+$O((1/r_0-1/r_1)D^2)=o(1)$ on the already fixed block.  Rechoose the common
+carrier beyond that collar and absorb this error into $\epsilon$.  This proves
+the phase assertion.  Finally choose the next cell beyond the end of the
+preceding one.
+This proves disjointness and~\eqref{eq:physical-riesz-cell-cost}.
+\end{proof}
+
+\subsection{Uniform lacunary placement and the fixed potential}
+
+The radial translations must work for a continuum of energies and for all
+later positive smoothings and Galerkin cutoffs.  The required uniformity is a
+compact-family form of the Riemann--Lebesgue lemma.
+
+\begin{lemma}[Uniform torus placement]
+\label{lem:uniform-torus-placement}
+Let $I$ be a compact interval and let
+$\mathcal F\Subset L^1(I;C(\mathbb T^q))$.  Given $\delta>0$ and $M>0$,
+there are real frequencies $M<n_1<\cdots<n_q$ such that, uniformly for
+$F\in\mathcal F$,
+\begin{equation}
+ \left|\int_I F(k,e^{in_1k},\ldots,e^{in_qk})\dd k
+ -\int_I\int_{\mathbb T^q}F(k,z)\dd z\dd k\right|<\delta.
+ \label{eq:uniform-torus-placement}
+\end{equation}
+The frequencies may be chosen successively: once $n_1,\ldots,n_{q-1}$ have
+been fixed to meet earlier finite lists of inequalities, $n_q$ can be taken
+arbitrarily large without disturbing those inequalities.  The same conclusion
+holds simultaneously for finitely many compact families.
+\end{lemma}
+
+\begin{proof}
+Approximate the compact family by finitely many functions which are
+trigonometric polynomials in $z$ with $L^1(I)$ coefficients.  Choose $n_1$
+so that every nonconstant $z_1$ Fourier mode is small.  Having chosen
+$n_1,\ldots,n_{t-1}$, every Fourier mode involving a nonzero power of $z_t$
+has frequency $\ell_t n_t+O(1)$ and tends to zero as $n_t\to\infty$ by the
+Riemann--Lebesgue lemma.  Its zero power is the $z_t$ average.  Induct on $t$
+and absorb the finite-net errors.  Earlier inequalities do not contain the
+new frequency and are therefore unchanged.  Taking the maximum of finitely
+many thresholds proves the final assertion.
+\end{proof}
+
+\begin{theorem}[Failure of fixed-potential buffered selected entropy]
+\label{thm:fixed-potential-riesz-counterexample}
+There are a bounded real zonal potential
+$V\in X_3$, with
+\begin{equation}
+ \int_{\mathbb S^2}V(r,\omega)\dd\omega=0
+ \quad\text{for a.e. }r,
+ \label{eq:fixed-counterexample-zero-mean}
+\end{equation}
+and a compact interval $K\Subset(0,\infty)$ with the following property.
+For every choice
+\begin{equation}
+ B_n,R_n,L_n\longrightarrow\infty,qquad
+ \frac{L_n}{B_n+R_n+1}\longrightarrow\infty,
+ \label{eq:arbitrary-buffered-diagonal}
+\end{equation}
+let
+\begin{equation}
+ V_n=\mathbf1_{[1,R_n]}\mathsf S_{B_n}V,
+ \label{eq:fixed-counterexample-approximants}
+\end{equation}
+and let $J_n(k)$ be the Jost matrix of
+$H_{R_n,L_n}(V_n)$.  Then
+\begin{equation}
+ \int_K\log^-\|J_n(k)^{-1}e_0\|^2\dd k
+ \longrightarrow+\infty.
+ \label{eq:fixed-potential-selected-entropy-divergence}
+\end{equation}
+In particular, the $N=1$ hypothesis
+\eqref{eq:buffered-diagonal-PSR} is false even when one is free to choose the
+cofinal positive smoothing, radial truncation, and double-buffered Galerkin
+diagonal.
+\end{theorem}
+
+\begin{proof}
+Fix $k_\star>0$ and a small compact interval $K$ about it.  Take
+$m_j=\lceil C_0\log(j+1)\rceil$, with $C_0$ large enough that
+\begin{equation}
+ \sum_j e^{-cm_j}<\infty.
+ \label{eq:riesz-cell-cost-summable}
+\end{equation}
+Use Proposition~\ref{prop:scalar-reciprocal-riesz-cell} with errors
+$\epsilon_j$ satisfying $\sum_j\epsilon_j^\beta<\infty$, and put the resulting
+cells on successive disjoint shells.  Their amplitudes are uniformly bounded;
+by~\eqref{eq:physical-riesz-cell-cost} and
+\eqref{eq:riesz-cell-cost-summable},
+\begin{equation}
+ \|V\|_{X_3}^2
+ =\sum_j\|v_{m_j,\epsilon_j}\|_{L^2_{r,\omega}}^2<\infty.
+ \label{eq:fixed-riesz-potential-cost}
+\end{equation}
+The mean-zero and reality assertions hold cell by cell.
+
+Choose the free radial translations successively by
+Lemma~\ref{lem:uniform-torus-placement}.  At the $j$th choice the earlier
+cells, a finite range of smoothing degrees, all radial cuts through the
+current cell, and all Galerkin cutoffs which resolve its finite angular band
+form finitely many compact transfer-matrix families.  A diagonal choice with
+error at most $2^{-j}$ therefore makes the physical energy average agree with
+the independent circle-phase average, uniformly for every later member of
+those families.  Increasing the finite range at each step covers every
+positive smoothing degree, every radial cut, and every finite cutoff.  The
+high-channel Schur estimate
+\eqref{eq:buffered-edge-self-energy-vanishes} supplies the remaining uniform
+passage from a resolved finite active block to the full double-buffered
+Galerkin model.
+
+Group the cells into dyadic blocks
+\begin{equation}
+ \mathcal B_q=\{j:2^{q-1}<j\leq2^q\}.
+\end{equation}
+For $N=2^q$, Proposition~\ref{prop:robust-reciprocal-cascade} applies on
+\begin{equation}
+ |s-1|\leq w_N
+ =\frac{c}{N\log(N+1)\log\log(N+2)}.
+\end{equation}
+Its conditional version, obtained by starting the proof at the left endpoint
+of $\mathcal B_q$, gives circle-phase mean loss at least $c2^q-C$.  Because
+$s=k_\star/k$ is bi-Lipschitz near $k_\star$, the corresponding energy window
+has length comparable to $w_{2^q}$.  On the complement, the conditional phase
+mean is nonnegative by Lemma~\ref{lem:translated-barrier-hardy}.  Hence every
+resolved dyadic block contributes at least
+\begin{equation}
+ c2^qw_{2^q}-C2^{-q}
+ \geq \frac{c'}{q\log(q+2)}-C2^{-q}
+ \label{eq:dyadic-block-entropy-gain}
+\end{equation}
+to the energy-averaged selected loss.  The uniform placement error is included
+in the summable final term.
+
+A smoothing or radial cut may leave one cell only partially resolved.  Its
+circle-phase mean cannot decrease the accumulated loss, again by
+\eqref{eq:barrier-hardy-nonnegative-loss}; uniform placement bounds its actual
+negative contribution by the assigned summable error.  Cofinality of
+\eqref{eq:arbitrary-buffered-diagonal} implies that every fixed dyadic block
+is eventually fully resolved and remains far below the Galerkin edge.
+Therefore~\eqref{eq:dyadic-block-entropy-gain} and
+\begin{equation}
+ \sum_{q\geq2}\frac1{q\log q}=+\infty
+\end{equation}
+give divergence of the signed selected loss.
+
+Finally, pointwise for $t>0$ one has $-\log t\leq\log^-t$.  Apply this with
+$t=\|J_n(k)^{-1}e_0\|^2$.  The divergent lower bound for the signed selected
+loss therefore implies~\eqref{eq:fixed-potential-selected-entropy-divergence}
+directly.  This proves the theorem.
+\end{proof}
+
+\begin{corollary}[What the counterexample decides]
+\label{cor:fixed-potential-route-closed}
+The universal endpoint estimates $\mathrm{SCI}_1$ and $\mathrm{HFI}_1$ are
+false in every form which implies the fixed selected-channel entropy bound
+\eqref{eq:buffered-diagonal-PSR}.  The exact signed centrifugal and angular
+heat interpolation identities remain valid, but their proposed uniform
+endpoint bounds do not.  Theorem
+\ref{thm:fixed-potential-riesz-counterexample} does not disprove Simon's
+conjecture: it controls one fixed probe only, while absolutely continuous
+spectral density may survive in moving angular directions.  Any continuation
+of the conjecture must therefore be basis-free (for example, a moving-probe
+or full-operator entropy), or use a mechanism other than selected-channel
+entropy.
+\end{corollary}
+
+\subsection{Reciprocal phase synchronization}
+
+The earlier obstruction to stacking localized barriers was a possible
+exponential amplification of a small non-real tail.  Reciprocal barriers do the
+opposite in phase average.  Let $a=\cosh\rho$, $b=\sinh\rho$, and let $H$ be
+the symmetric unitary reciprocal phase on an active block.  An ideal refocused
+barrier acts by
+\begin{equation}
+ \Phi_z(H)=(a\Id+zbH)^{-1}(aH+\bar z b\Id),\qquad |z|=1.
+ \label{eq:reciprocal-mobius-map}
+\end{equation}
+For $h,\lambda\in\mathbb T$, direct cross multiplication gives
+\begin{equation}
+ |\Phi_z(h)-\Phi_z(\lambda)|
+ =\frac{|h-\lambda|}
+ {|a+zbh|\,|a+zb\lambda|}.
+ \label{eq:mobius-chord-identity}
+\end{equation}
+At a synchronized phase the projective derivative is
+\begin{equation}
+ L_z(\lambda)=|a+zb\lambda|^{-2},\qquad
+ \frac1{2\pi}\int_0^{2\pi}L_{e^{i\phi}}(\lambda)\dd\phi=1.
+ \label{eq:mobius-critical-derivative}
+\end{equation}
+For every $0<\beta<1$, strict Jensen gives
+\begin{equation}
+ q_\beta:=\frac1{2\pi}\int_0^{2\pi}
+ L_{e^{i\phi}}(\lambda)^\beta\dd\phi<1.
+ \label{eq:mobius-fractional-contraction}
+\end{equation}
+The value is independent of $\lambda$.
+
+\begin{proposition}[Robust reciprocal-cascade entropy]
+\label{prop:robust-reciprocal-cascade}
+Consider $N$ successive real reciprocal cells on nested finite active blocks.
+Suppose that, after the forward and reverse converter gauges, the $j$th cell
+has transfer coefficients
+\begin{equation}
+ A_j(s)=a\Id+E_{j,+}(s),\qquad
+ B_j(s)=b\Id+E_{j,-}(s)
+ \label{eq:near-scalar-cell-coefficients}
+\end{equation}
+on the active block, with the exact flux relations and
+\begin{equation}
+ \|E_{j,+}(s)\|+\|E_{j,-}(s)\|
+ \leq\eta_j(s),\qquad
+ \eta_j(s)\leq C m_j|s-1|+\epsilon_j,
+ \label{eq:near-scalar-cell-error}
+\end{equation}
+where $m_j\leq C_0\log(j+1)$ and
+$\sum_j\epsilon_j^\beta$ is sufficiently small.  Starting from the free
+constant channel, let $J_N(s,z)$ be the resulting Jost block.  There are
+$c_0,C_1>0$ such that, for
+\begin{equation}
+ |s-1|\leq w_N,\qquad
+ w_N=\frac{c_0}{N\log(N+1)\log\log(N+2)},
+ \label{eq:dyadic-coherence-window}
+\end{equation}
+one has
+\begin{equation}
+ \int_{\mathbb T^N}
+ -\log\|J_N(s,z)^{-1}e_0\|\dd z
+ \geq c_0N-C_1.
+ \label{eq:robust-cascade-linear-loss}
+\end{equation}
+Every circle carries normalized Haar measure.
+\end{proposition}
+
+\begin{proof}
+With zero error and $s=1$, the refocused active Jost block has the scalar
+recurrence
+\begin{equation}
+ d_j=a d_{j-1}+z_jb\overline{d_{j-1}},\qquad d_0=1.
+ \label{eq:scalar-hyperbolic-recurrence}
+\end{equation}
+Thus
+\begin{equation}
+ \int_{\mathbb T}\log|a d+zb\bar d|\dd z
+ =\log|d|+\log a,
+ \label{eq:scalar-barrier-mean-gain}
+\end{equation}
+and the exact mean loss is $N\log a$.
+
+For the perturbed cascade put $H_j=J_j^{-1}\overline{J_j}$ in the refocused
+active frame.  Its ideal update is~\eqref{eq:reciprocal-mobius-map}; the
+operator-norm perturbation is $O(\eta_j)$.  If the spectrum of $H_j$ lies in
+an arc $I$, then the ideal image lies in $\Phi_z(I)$ and
+\begin{equation}
+ |\Phi_z(I)|=\int_I|a+zbe^{i\vartheta}|^{-2}\dd\vartheta.
+ \label{eq:mobius-arc-length}
+\end{equation}
+Its phase mean is $|I|$.  Strict concavity and
+\eqref{eq:mobius-fractional-contraction} give, uniformly for arcs of length at
+most a fixed $\ell_0<2\pi$,
+\begin{equation}
+ \mathbb E_z|\Phi_z(I)|^\beta\leq q|I|^\beta,\qquad q<1.
+ \label{eq:arc-fractional-contraction}
+\end{equation}
+
+There is only one way a short arc can make a macroscopic excursion: the random
+repelling point of $\Phi_z$ must fall within $O(|I|+\eta_j)$ of it.
+Equivalently, apply the maximal inequality to the nonnegative arc-length
+martingale generated by~\eqref{eq:mobius-arc-length}.  An error arc injected
+with length $C\eta_j$ has probability at most
+$C\eta_j/\ell_0$ of ever reaching $\ell_0$.  Hence the excursion probability
+before time $N$ is at most
+\begin{equation}
+ C\sum_{j\leq N}\eta_j(s)
+ \leq \frac{C}{\log\log(N+2)}+C\sum_j\epsilon_j,
+ \label{eq:mobius-excursion-probability}
+\end{equation}
+where~\eqref{eq:dyadic-coherence-window} and
+$\sum_{j\leq N}m_j=O(N\log N)$ were used.  On the complement,
+\eqref{eq:arc-fractional-contraction} and subadditivity of $t^\beta$ keep the
+reciprocal phase in an arbitrarily short arc, except for a set of phase
+histories of arbitrarily small measure.
+
+If $H_j$ lies in an arc of length $o(1)$ around $\lambda_j$, then
+$H_j\bar y_j=y_j$ implies
+\begin{equation}
+ \|\bar y_j-\bar\lambda_j y_j\|=o(1)\|y_j\|.
+\end{equation}
+Lemma~\ref{lem:translated-barrier-hardy} and
+\eqref{eq:near-scalar-cell-error} give a conditional phase-mean loss
+$\log a-o(1)$ at such a stage.  At the exceptional stages the conditional
+mean remains nonnegative by~\eqref{eq:barrier-hardy-nonnegative-loss}.
+Choose the summable error budget small, discard finitely many initial stages,
+and sum the conditional means.  This proves
+\eqref{eq:robust-cascade-linear-loss}.
+\end{proof}
+
+For a physical inner Jost matrix $J$, a reflectionless real converter with
+transmission $U$, and $x=J^{-1}e_0$, the state at the reflector is $y=Ux$ and
+the reciprocal phase is
+\begin{equation}
+ S=UJ^{-1}\overline J\,U^T.
+ \label{eq:riesz-reciprocal-phase}
+\end{equation}
+The half-line scattering identity makes $S$ unitary and gives the exact
+outgoing-square relation
+\begin{equation}
+ S\bar y=y.
+ \label{eq:riesz-outgoing-square}
+\end{equation}
+
+\subsection{The zonal quarter-Talbot Riesz factor}
+
+Put $D=-\partial_x^2$ on the circle and fix $0<a<\pi/4$.  Define
+\begin{equation}
+ g_s(x)=e^{-i\pi sD/2}e^{-ias\cos x}.
+ \label{eq:flat-talbot-factor}
+\end{equation}
+Even and odd Fourier modes have multipliers $1$ and $-i$ at $s=1$, so
+\begin{align}
+ g_1(x)&=\cos(a\cos x)-\sin(a\cos x)>0,
+ \label{eq:positive-talbot-factor}\\
+ p(x)&=g_1(x)^2=1-\sin(2a\cos x),\qquad
+ \frac1{2\pi}\int_0^{2\pi}p(x)\dd x=1.
+ \label{eq:talbot-riesz-density}
+\end{align}
+Strict Jensen gives the positive tilted entropy
+\begin{equation}
+ D_p:=\frac1{2\pi}\int_0^{2\pi}p\log p\dd x>0.
+ \label{eq:talbot-positive-entropy}
+\end{equation}
+
+\begin{proposition}[Zonal spherical Talbot factor and reciprocal inverse]
+\label{prop:zonal-talbot-factor}
+Let $\mathcal K\subset C^\infty(\mathbb S^2)$ be finite dimensional,
+zonal, and invariant under conjugation.  Uniformly for $s$ in a fixed compact
+neighbourhood of $1$ and odd integers $L\to\infty$,
+\begin{equation}
+ e^{-i\pi sA_3/(2L^2)}
+   \bigl(e^{-ias\cos(L\theta)}f\bigr)
+ =g_s(L\theta)f+\mathcal R_{L,s}f,\qquad
+ \|\mathcal R_{L,s}\|_{\mathcal K\to L^2}
+ \leq C_{\mathcal K,a}\frac{\sqrt{\log L}}L.
+ \label{eq:spherical-talbot-asymptotic}
+\end{equation}
+A sign-reversed mask following a free flight of scaled duration
+$3\pi/(2L^2)$ gives an operator $W_{L,s}$ such that, for the forward factor
+$U_{L,s}$ above,
+\begin{align}
+ \|W_{L,1}U_{L,1}-\Id\|_{\mathcal K\to L^2}
+ &\leq C_{\mathcal K,a}\frac{\sqrt{\log L}}L,
+ \label{eq:talbot-reciprocal-inverse}\\
+ \|W_{L,s}U_{L,s}-W_{L,1}U_{L,1}\|_{\mathcal K\to L^2}
+ &\leq C_{\mathcal K,a}|s-1|.
+ \label{eq:talbot-chromatic-bound}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+The identity $\cos(L\theta)=T_L(\cos\theta)$ makes the mask globally smooth.
+On zonal functions
+\begin{equation}
+ A_3=-\partial_\theta^2-\cot\theta\,\partial_\theta.
+\end{equation}
+Compare its scaled evolution with that of $-\partial_\theta^2$ by Duhamel.
+For every smooth periodic $H$,
+\begin{equation}
+ \|\cot\theta\,\partial_\theta H(L\theta)\|_{L^2(\mathbb S^2)}
+ \leq C_H L\sqrt{\log L}.
+\end{equation}
+The evolution time is $O(L^{-2})$, giving
+\eqref{eq:spherical-talbot-asymptotic}; derivatives falling on the fixed
+envelope cost only $O(L^{-1})$.  In the flat fast variable
+$e^{-i3\pi D/2}=e^{i\pi D/2}$.  Thus the sign-reversed mask after the
+$3\pi/2$ flight is the inverse factor at $s=1$.  The same Duhamel comparison
+proves~\eqref{eq:talbot-reciprocal-inverse}; differentiation in $s$ on the
+scaled finite fast-frequency block proves~\eqref{eq:talbot-chromatic-bound}.
+\end{proof}
+
+\begin{proposition}[Uniform Riesz concentration on a finite incoming block]
+\label{prop:talbot-riesz-concentration}
+Fix $0<\alpha<D_p$, a finite-dimensional conjugation-invariant zonal space
+$\mathcal K$, an integer $m$, and $\epsilon>0$.  There are odd,
+superlacunary frequencies $L_1<\cdots<L_m$, a real finite-band function
+$0\leq\chi_m\leq1$, and forward and reverse Talbot products $U_{m,s}$ and
+$W_{m,s}$ such that, with
+\begin{equation}
+ G_m(\theta)=\prod_{t=1}^m g_1(L_t\theta),\qquad
+ E_m=\left\{\sum_{t=1}^m\log p(L_t\theta)\geq\alpha m\right\},
+ \label{eq:riesz-product-typical-set}
+\end{equation}
+one has
+\begin{align}
+ \|U_{m,1}f-G_mf\|_2
+ &\leq\epsilon\|f\|_2,
+ \label{eq:riesz-forward-approximation}\\
+ \|(1-\chi_m)U_{m,1}f\|_2
+ &\leq(\epsilon+Ce^{-cm})\|f\|_2,
+ \label{eq:riesz-concentration}\\
+ \|\chi_m\|_2^2&\leq Ce^{-cm},
+ \label{eq:riesz-small-support-cost}\\
+ \|W_{m,1}U_{m,1}-\Id\|_{\mathcal K\to L^2}
+ &\leq\epsilon,
+ \label{eq:riesz-refocusing}\\
+ \|W_{m,s}U_{m,s}-W_{m,1}U_{m,1}\|
+ +\|U_{m,s}-U_{m,1}\|
+ &\leq C_{\mathcal K,a}m|s-1|.
+ \label{eq:riesz-chromatic-error}
+\end{align}
+The last two norms are from $\mathcal K$ to $L^2$.
+\end{proposition}
+
+\begin{proof}
+Choose the frequencies successively.  Riemann--Lebesgue, uniformly on the unit
+sphere of $\mathcal K$, makes every exponential moment used below as close as
+desired to the product moment of independent copies of $\log p$.  On $E_m$,
+$\prod p(L_t\theta)\geq e^{\alpha m}$, hence $|E_m|\leq Ce^{-\alpha m}$.
+Under the tilted density $p(x)\dd x/(2\pi)$, the mean of $\log p$ is
+$D_p>\alpha$.  Chernoff therefore gives, uniformly for $f\in\mathcal K$,
+\begin{equation}
+ \int_{E_m^c}|G_m|^2|f|^2\dd\omega
+ \leq Ce^{-cm}\|f\|_2^2.
+ \label{eq:riesz-tilted-large-deviation}
+\end{equation}
+Apply the positive finite-band spherical smoother
+\eqref{eq:positive-angular-smoother} to a slightly enlarged typical set.
+For sufficiently large smoothing degree it gives $0\leq\chi_m\leq1$,
+\eqref{eq:riesz-small-support-cost}, and the same weighted-tail estimate.
+Proposition~\ref{prop:zonal-talbot-factor}, with still more separated
+frequencies, proves~\eqref{eq:riesz-forward-approximation} and
+\eqref{eq:riesz-concentration}.  Apply the reciprocal factors in reverse order
+to obtain~\eqref{eq:riesz-refocusing}.  Telescoping the two products and using
+\eqref{eq:talbot-chromatic-bound} proves~\eqref{eq:riesz-chromatic-error}.
+\end{proof}

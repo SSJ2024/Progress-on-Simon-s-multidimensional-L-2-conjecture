@@ -1,0 +1,263 @@
+[
+  {
+    "L": 2,
+    "low_dim": 9,
+    "high_dim": 16,
+    "offdiag": {
+      "rank": 8,
+      "sigma_max": 0.24179553580618196,
+      "sigma_min_numeric": 0.1560783472274403,
+      "rhs_norm": 0.6388765649999418,
+      "residual": 2.236437869533616e-15,
+      "relative_residual": 3.5005789726123697e-15,
+      "high_correction_norm": 4.093306831785959,
+      "full_multiplier_norm": 5.414935958393674,
+      "sampled_multiplier_sup": 3.3448013113923505,
+      "max_coefficient": 4.093306831785959
+    },
+    "diagonal": {
+      "rank": 8,
+      "sigma_max": 0.24179553580618196,
+      "sigma_min_numeric": 0.1560783472274403,
+      "rhs_norm": 1.0,
+      "residual": 3.834621174775612e-16,
+      "relative_residual": 3.834621174775612e-16,
+      "high_correction_norm": 4.1357256521128605,
+      "full_multiplier_norm": 4.1357256521128605,
+      "sampled_multiplier_sup": 2.728306138593865,
+      "max_coefficient": 4.077880486485228
+    }
+  },
+  {
+    "L": 3,
+    "low_dim": 16,
+    "high_dim": 33,
+    "offdiag": {
+      "rank": 15,
+      "sigma_max": 0.2909556714278184,
+      "sigma_min_numeric": 0.06434698754695163,
+      "rhs_norm": 0.7453559924999292,
+      "residual": 8.044565516898129e-16,
+      "relative_residual": 1.079291720714098e-15,
+      "high_correction_norm": 5.878564381674122,
+      "full_multiplier_norm": 6.864684246478262,
+      "sampled_multiplier_sup": 4.455567548005877,
+      "max_coefficient": 5.878564381674122
+    },
+    "diagonal": {
+      "rank": 15,
+      "sigma_max": 0.2909556714278184,
+      "sigma_min_numeric": 0.06434698754695163,
+      "rhs_norm": 1.0,
+      "residual": 8.338566955076207e-16,
+      "relative_residual": 8.338566955076207e-16,
+      "high_correction_norm": 3.7533862737208863,
+      "full_multiplier_norm": 3.7533862737208863,
+      "sampled_multiplier_sup": 2.800783234940381,
+      "max_coefficient": 3.589607524884021
+    }
+  },
+  {
+    "L": 4,
+    "low_dim": 25,
+    "high_dim": 56,
+    "offdiag": {
+      "rank": 24,
+      "sigma_max": 0.2930040859206217,
+      "sigma_min_numeric": 0.03481291156877927,
+      "rhs_norm": 0.8965242243657245,
+      "residual": 2.9261660548911316e-15,
+      "relative_residual": 3.26390071273461e-15,
+      "high_correction_norm": 16.339080830482843,
+      "full_multiplier_norm": 16.71920850397563,
+      "sampled_multiplier_sup": 13.160135159627997,
+      "max_coefficient": 14.45271617650747
+    },
+    "diagonal": {
+      "rank": 24,
+      "sigma_max": 0.2930040859206217,
+      "sigma_min_numeric": 0.03481291156877927,
+      "rhs_norm": 1.0,
+      "residual": 1.354416106280512e-15,
+      "relative_residual": 1.354416106280512e-15,
+      "high_correction_norm": 3.70116264723708,
+      "full_multiplier_norm": 3.70116264723708,
+      "sampled_multiplier_sup": 2.7793414935100884,
+      "max_coefficient": 3.6803000413948554
+    }
+  },
+  {
+    "L": 5,
+    "low_dim": 36,
+    "high_dim": 85,
+    "offdiag": {
+      "rank": 35,
+      "sigma_max": 0.3373189686232964,
+      "sigma_min_numeric": 0.013678911139513745,
+      "rhs_norm": 0.976044426188424,
+      "residual": 5.057383923121179e-15,
+      "relative_residual": 5.1815099676055706e-15,
+      "high_correction_norm": 23.036489005627313,
+      "full_multiplier_norm": 23.307642444501916,
+      "sampled_multiplier_sup": 18.641904889149828,
+      "max_coefficient": 21.057382627161235
+    },
+    "diagonal": {
+      "rank": 35,
+      "sigma_max": 0.3373189686232964,
+      "sigma_min_numeric": 0.013678911139513745,
+      "rhs_norm": 1.0,
+      "residual": 1.8370666268087487e-15,
+      "relative_residual": 1.8370666268087487e-15,
+      "high_correction_norm": 3.5133509351002328,
+      "full_multiplier_norm": 3.5133509351002328,
+      "sampled_multiplier_sup": 2.8380199743982635,
+      "max_coefficient": 3.465033494884598
+    }
+  },
+  {
+    "L": 6,
+    "low_dim": 49,
+    "high_dim": 120,
+    "offdiag": {
+      "rank": 48,
+      "sigma_max": 0.3396235119924826,
+      "sigma_min_numeric": 0.006620387211639667,
+      "rhs_norm": 1.0630706196338,
+      "residual": 1.0084326527927544e-14,
+      "relative_residual": 9.486036338208022e-15,
+      "high_correction_norm": 70.86924026211227,
+      "full_multiplier_norm": 70.95784372388549,
+      "sampled_multiplier_sup": 64.45860995975671,
+      "max_coefficient": 63.789579749749464
+    },
+    "diagonal": {
+      "rank": 48,
+      "sigma_max": 0.3396235119924826,
+      "sigma_min_numeric": 0.006620387211639667,
+      "rhs_norm": 1.0,
+      "residual": 1.2315696491181214e-15,
+      "relative_residual": 1.2315696491181214e-15,
+      "high_correction_norm": 3.4248219405504754,
+      "full_multiplier_norm": 3.4248219405504754,
+      "sampled_multiplier_sup": 2.7810973596852313,
+      "max_coefficient": 3.4181058886190874
+    }
+  },
+  {
+    "L": 7,
+    "low_dim": 64,
+    "high_dim": 161,
+    "offdiag": {
+      "rank": 63,
+      "sigma_max": 0.3766115705663637,
+      "sigma_min_numeric": 0.002581866850060361,
+      "rhs_norm": 1.1260628408283857,
+      "residual": 2.0646279499272307e-14,
+      "relative_residual": 1.8334926569536668e-14,
+      "high_correction_norm": 101.76696990763892,
+      "full_multiplier_norm": 101.82869210000021,
+      "sampled_multiplier_sup": 90.32399144449852,
+      "max_coefficient": 93.63389050032063
+    },
+    "diagonal": {
+      "rank": 63,
+      "sigma_max": 0.3766115705663637,
+      "sigma_min_numeric": 0.002581866850060361,
+      "rhs_norm": 1.0,
+      "residual": 9.481379343247947e-16,
+      "relative_residual": 9.481379343247947e-16,
+      "high_correction_norm": 3.3070928187568636,
+      "full_multiplier_norm": 3.3070928187568636,
+      "sampled_multiplier_sup": 2.82040420454845,
+      "max_coefficient": 3.292686013049051
+    }
+  },
+  {
+    "L": 8,
+    "low_dim": 81,
+    "high_dim": 208,
+    "offdiag": {
+      "rank": 80,
+      "sigma_max": 0.3790167936445949,
+      "sigma_min_numeric": 0.0011810273690902279,
+      "rhs_norm": 1.1881433495035756,
+      "residual": 6.20642200447337e-14,
+      "relative_residual": 5.2236306394060176e-14,
+      "high_correction_norm": 343.81117183127924,
+      "full_multiplier_norm": 343.8294464507247,
+      "sampled_multiplier_sup": 333.24499732681295,
+      "max_coefficient": 313.75196123936524
+    },
+    "diagonal": {
+      "rank": 80,
+      "sigma_max": 0.3790167936445949,
+      "sigma_min_numeric": 0.0011810273690902279,
+      "rhs_norm": 1.0,
+      "residual": 1.6326222237700786e-15,
+      "relative_residual": 1.6326222237700786e-15,
+      "high_correction_norm": 3.2249877824310067,
+      "full_multiplier_norm": 3.2249877824310067,
+      "sampled_multiplier_sup": 2.7774795633294462,
+      "max_coefficient": 3.222852548004922
+    }
+  },
+  {
+    "L": 9,
+    "low_dim": 100,
+    "high_dim": 261,
+    "offdiag": {
+      "rank": 99,
+      "sigma_max": 0.41077764324798266,
+      "sigma_min_numeric": 0.0004591163874158302,
+      "rhs_norm": 1.240118623317129,
+      "residual": 8.7890146597988e-14,
+      "relative_residual": 7.087237055024237e-14,
+      "high_correction_norm": 499.42775196855337,
+      "full_multiplier_norm": 499.4403325793555,
+      "sampled_multiplier_sup": 461.5261256366664,
+      "max_coefficient": 462.59138762427614
+    },
+    "diagonal": {
+      "rank": 99,
+      "sigma_max": 0.41077764324798266,
+      "sigma_min_numeric": 0.0004591163874158302,
+      "rhs_norm": 1.0,
+      "residual": 1.7600104968980706e-15,
+      "relative_residual": 1.7600104968980706e-15,
+      "high_correction_norm": 3.1403011820467706,
+      "full_multiplier_norm": 3.1403011820467706,
+      "sampled_multiplier_sup": 2.802099059583782,
+      "max_coefficient": 3.1359116217481424
+    }
+  },
+  {
+    "L": 10,
+    "low_dim": 121,
+    "high_dim": 320,
+    "offdiag": {
+      "rank": 120,
+      "sigma_max": 0.4133102857647442,
+      "sigma_min_numeric": 0.0002029893980990958,
+      "rhs_norm": 1.2895458590053963,
+      "residual": 3.661996800225426e-13,
+      "relative_residual": 2.839756938190518e-13,
+      "high_correction_norm": 1789.2356635315048,
+      "full_multiplier_norm": 1789.2391751869393,
+      "sampled_multiplier_sup": 1787.3959704763408,
+      "max_coefficient": 1645.4681536070204
+    },
+    "diagonal": {
+      "rank": 120,
+      "sigma_max": 0.4133102857647442,
+      "sigma_min_numeric": 0.0002029893980990958,
+      "rhs_norm": 1.0,
+      "residual": 2.366980264778165e-15,
+      "relative_residual": 2.366980264778165e-15,
+      "high_correction_norm": 3.0711106954924112,
+      "full_multiplier_norm": 3.0711106954924112,
+      "sampled_multiplier_sup": 2.7759586603109803,
+      "max_coefficient": 3.0704286616289846
+    }
+  }
+]

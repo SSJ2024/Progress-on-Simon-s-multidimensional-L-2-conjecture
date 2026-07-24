@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the relevant preprint and this archived release."
+title: "Two studies on Simon's multidimensional L2 conjecture"
+type: dataset
+authors:
+  - family-names: "Siraji"
+    given-names: "Siam"
+    email: "siam.siraji@adelaide.edu.au"
+version: 1.0.0
+date-released: 2026-07-24
+keywords:
+  - Schrodinger operators
+  - absolutely continuous spectrum
+  - operator-valued Riesz products
+  - spectral entropy
+  - quantum control
