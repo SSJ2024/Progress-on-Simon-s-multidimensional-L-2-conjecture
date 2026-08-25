@@ -1,0 +1,4 @@
+POST-REPAIR VERDICT (Theorem 6' + Lemma A, see THEOREM_6_PRIME.md):
+GAP H CLOSED: per-probe synthesis via 3P one-aim generations on disjoint fresh shells delivers each probe's beta-moment contraction by (3/4)^3 = 27/64 < 1/2, with global protection, re-certified singularity, and summable 2^{-2j} budgets — eq:dovetail-nonexpand/-contract/-moments all met.
+GAP G3 CLOSED: block chromatic law err <= C M m |k/k* - 1| + M eps proved with explicit M-independent constants (SU(1,1) drift engine + exact Hardy cap), discharging lem:window-cost's hypothesis unconditionally.
+STATUS: prob:physical-grouped-global holds per-probe; prop:conditional-counterexample-final activates: bounded real V in X_3 with P_ac(-Delta+V)1_K(-Delta+V)=0, i.e. Simon's multidimensional L^2 conjecture is FALSE for nu=3, conditionally on the Note's audited proved layer only (no lens/radialization/hazard inputs; residual conditions R1-R5 recorded).
