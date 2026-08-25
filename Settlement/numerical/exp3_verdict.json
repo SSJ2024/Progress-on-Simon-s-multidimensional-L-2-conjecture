@@ -1,0 +1,4 @@
+{
+ "experiment": 3,
+ "verdict": "POSITIVE-FLOOR-BLOCKED: no family reaches eps=0.05 at any Qmax (static transfer suppressed for Qmax << N_gap; carrier too slow within budget)"
+}

@@ -1,0 +1,10 @@
+{
+ "experiment": "root_zeno",
+ "verdict": "REPRODUCED: literal trace Q_lit is n-independent (spread 4.4e-16 -- no contraction from grouping alone), while the source-faithful functional Q_prob -> 1 with gap ~ exp(2 n log tanh(rho)) (median measured/predicted log-gap slope 1.006), giving the log N / (2 rho) group-length law of prop:grouped-root-zeno; at fixed n the Haar-random functional stays strictly below 1 (min margin 8.264e-04)",
+ "gap_decays_with_n": true,
+ "fixed_n_gap_positive": true,
+ "literal_trace_n_independent": true,
+ "median_loggap_slope_ratio_vs_prediction": 1.0058766290062797,
+ "min_haar_margin": 0.00448699020201615,
+ "min_haar_median_margin": 0.0008264074201513871
+}

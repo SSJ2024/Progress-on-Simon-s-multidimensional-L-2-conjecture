@@ -1,0 +1,70 @@
+SVD-based sup_A check: rho=1.0, N_Z=8192
+n= 2 beta=0.5  coh=0.80503 wish_max=0.81478 (>1 in 0/150) opt=0.82947
+n= 2 beta=0.75 coh=0.85241 wish_max=0.87224 (>1 in 0/150) opt=0.87418
+n= 2 beta=0.9  coh=0.92777 wish_max=0.93635 (>1 in 0/150) opt=0.93954
+n= 4 beta=0.5  coh=0.92730 wish_max=0.82553 (>1 in 0/150) opt=0.93137
+n= 4 beta=0.75 coh=0.94489 wish_max=0.87690 (>1 in 0/150) opt=0.94823
+n= 4 beta=0.9  coh=0.97320 wish_max=0.94226 (>1 in 0/150) opt=0.97492
+n= 8 beta=0.5  coh=0.94753 wish_max=0.82000 (>1 in 0/150) opt=0.96963
+n= 8 beta=0.75 coh=0.96134 wish_max=0.87027 (>1 in 0/150) opt=0.97741
+n= 8 beta=0.9  coh=0.98157 wish_max=0.94566 (>1 in 0/150) opt=0.98882
+{
+  "experiment": "1b-check-corrected",
+  "verdict": "ALL-BELOW-ONE (corrected): worst probe 0.98882 < 1 across all 9 cells; the earlier sup-A>1 alarm is retracted as a non-Hermitian-axis bug in the previous revision",
+  "summary": {
+    "n2_beta0.5": {
+      "coherent_rank1": 0.8050281461591253,
+      "wishart_max": 0.8147818558817054,
+      "optimized_diag_max": 0.8294672769646408,
+      "n_above_one_wishart": 0
+    },
+    "n2_beta0.75": {
+      "coherent_rank1": 0.8524116318351691,
+      "wishart_max": 0.8722354259144508,
+      "optimized_diag_max": 0.874183900384049,
+      "n_above_one_wishart": 0
+    },
+    "n2_beta0.9": {
+      "coherent_rank1": 0.9277730868011764,
+      "wishart_max": 0.9363524931125109,
+      "optimized_diag_max": 0.9395438362891742,
+      "n_above_one_wishart": 0
+    },
+    "n4_beta0.5": {
+      "coherent_rank1": 0.9272954594908998,
+      "wishart_max": 0.8255255523061891,
+      "optimized_diag_max": 0.9313661109617258,
+      "n_above_one_wishart": 0
+    },
+    "n4_beta0.75": {
+      "coherent_rank1": 0.9448856223560895,
+      "wishart_max": 0.8769048375794366,
+      "optimized_diag_max": 0.9482319832643772,
+      "n_above_one_wishart": 0
+    },
+    "n4_beta0.9": {
+      "coherent_rank1": 0.9732001384760853,
+      "wishart_max": 0.9422649061626838,
+      "optimized_diag_max": 0.9749244807012437,
+      "n_above_one_wishart": 0
+    },
+    "n8_beta0.5": {
+      "coherent_rank1": 0.9475317451484353,
+      "wishart_max": 0.820000434514117,
+      "optimized_diag_max": 0.9696277389881713,
+      "n_above_one_wishart": 0
+    },
+    "n8_beta0.75": {
+      "coherent_rank1": 0.9613392241568955,
+      "wishart_max": 0.8702704065102244,
+      "optimized_diag_max": 0.977409045824506,
+      "n_above_one_wishart": 0
+    },
+    "n8_beta0.9": {
+      "coherent_rank1": 0.9815661917639096,
+      "wishart_max": 0.9456646987326559,
+      "optimized_diag_max": 0.9888213583987244,
+      "n_above_one_wishart": 0
+    }
+  }
+}

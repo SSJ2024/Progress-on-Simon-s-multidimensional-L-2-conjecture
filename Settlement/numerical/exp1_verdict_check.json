@@ -1,0 +1,7 @@
+{
+ "experiment": 1,
+ "verdict": "PASS: kappa_{beta,n} < 1 for every (beta, n, rho) tested; coherent probe gap decays ~ 1/n (median implied/predicted coefficient ratio 0.35); consistent with polynomial dimension-driven approach to 1",
+ "all_below_one": true,
+ "worst_kappa": 0.9999400358580744,
+ "median_coeff_ratio_vs_theory": 0.35018378007220674
+}

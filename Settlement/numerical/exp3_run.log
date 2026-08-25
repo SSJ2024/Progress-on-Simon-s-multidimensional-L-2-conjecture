@@ -1,0 +1,129 @@
+Experiment 3: short-time radialization on truncated S^2 model
+sector dim=24, N_gap=4.0, eps_target=0.05
+Qmax=   10.0: static err=0.4942 @T=1.2061291331975175   carrier err=0.2343 @T=4.308869380063768 (w/gap=0.606)   optimized err=0.3981 @T=2.550
+Qmax=  100.0: static err=0.8429 @T=0.46415888336127786   carrier err=0.5147 @T=0.8773066621237415 (w/gap=0.55)   optimized err=0.5012 @T=3.303
+Qmax= 1000.0: static err=0.9478 @T=0.05   carrier err=0.9113 @T=0.46415888336127786 (w/gap=1.45)   optimized err=0.9025 @T=4.062
+{
+  "seed": 20260825,
+  "l_max": 24,
+  "m_sector": 1,
+  "task": "|l=1,m=1> -> |l=2,m=1>, sup_s leakage",
+  "eps_target": 0.05,
+  "n_gap": 4.0,
+  "results": {
+    "free_only": {
+      "total_time": 0.0,
+      "error": 1.0,
+      "note": "free evolution preserves populations"
+    },
+    "static_Qmax10": {
+      "total_time": 1.2061291331975175,
+      "error": 0.4942065103376575
+    },
+    "carrier_Qmax10": {
+      "total_time": 4.308869380063768,
+      "error": 0.23425840375225204,
+      "omega_over_gap": 0.6062500000000001
+    },
+    "optimized_Qmax10": {
+      "total_time": 2.5500098154441417,
+      "error": 0.3981315253336435
+    },
+    "static_Qmax100": {
+      "total_time": 0.46415888336127786,
+      "error": 0.8428891767228448
+    },
+    "carrier_Qmax100": {
+      "total_time": 0.8773066621237415,
+      "error": 0.5147178977978679,
+      "omega_over_gap": 0.55
+    },
+    "optimized_Qmax100": {
+      "total_time": 3.302507715532407,
+      "error": 0.5012460570594522
+    },
+    "static_Qmax1000": {
+      "total_time": 0.05,
+      "error": 0.9477664886875716
+    },
+    "carrier_Qmax1000": {
+      "total_time": 0.46415888336127786,
+      "error": 0.911312619256095,
+      "omega_over_gap": 1.45
+    },
+    "optimized_Qmax1000": {
+      "total_time": 4.061970494556842,
+      "error": 0.9024890821617462
+    }
+  },
+  "families": {
+    "static": {
+      "points": [
+        {
+          "Qmax": 10.0,
+          "time": 1.2061291331975175,
+          "error": 0.4942065103376575
+        },
+        {
+          "Qmax": 100.0,
+          "time": 0.46415888336127786,
+          "error": 0.8428891767228448
+        },
+        {
+          "Qmax": 1000.0,
+          "time": 0.05,
+          "error": 0.9477664886875716
+        }
+      ],
+      "eps05_met_all": false,
+      "loglog_slope_if_met": null
+    },
+    "optimized": {
+      "points": [
+        {
+          "Qmax": 10.0,
+          "time": 2.5500098154441417,
+          "error": 0.3981315253336435
+        },
+        {
+          "Qmax": 100.0,
+          "time": 3.302507715532407,
+          "error": 0.5012460570594522
+        },
+        {
+          "Qmax": 1000.0,
+          "time": 4.061970494556842,
+          "error": 0.9024890821617462
+        }
+      ],
+      "eps05_met_all": false,
+      "loglog_slope_if_met": null
+    },
+    "carrier": {
+      "points": [
+        {
+          "Qmax": 10.0,
+          "time": 4.308869380063768,
+          "error": 0.23425840375225204
+        },
+        {
+          "Qmax": 100.0,
+          "time": 0.8773066621237415,
+          "error": 0.5147178977978679
+        },
+        {
+          "Qmax": 1000.0,
+          "time": 0.46415888336127786,
+          "error": 0.911312619256095
+        }
+      ],
+      "eps05_met_all": false,
+      "loglog_slope_if_met": null
+    }
+  },
+  "regime": {
+    "carrier_slope_Q10_to_100": null,
+    "carrier_slope_Q100_to_1000": null
+  }
+}
+{"experiment": 3, "verdict": "POSITIVE-FLOOR-BLOCKED: no family reaches eps=0.05 at any Qmax (static transfer suppressed for Qmax << N_gap; carrier too slow within budget)"}
