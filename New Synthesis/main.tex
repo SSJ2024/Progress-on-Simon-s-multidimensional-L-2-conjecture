@@ -1,0 +1,550 @@
+% !TEX program = pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\geometry{a4paper,margin=25mm}
+\setlength{\emergencystretch}{2em}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  urlcolor=blue!60!black,
+  pdftitle={One-Generation Grouped Contraction and the Failure of Simon's Multidimensional L2 Conjecture},
+  pdfauthor={Technical research note}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Id}{\mathrm I}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\U}{\mathrm U}
+\newcommand{\Sone}{\mathfrak S_1}
+\newcommand{\ac}{{\rm ac}}
+
+\definecolor{proved}{RGB}{20,105,60}
+\definecolor{open}{RGB}{170,80,15}
+\definecolor{falsec}{RGB}{165,35,35}
+\newcommand{\proved}{\textcolor{proved}{\textnormal{\textsc{proved here}}}}
+\newcommand{\conditional}{\textcolor{open}{\textnormal{\textsc{conditional}}}}
+\newcommand{\falseclaim}{\textcolor{falsec}{\textnormal{\textsc{false as stated}}}}
+
+\title{\textbf{One-Generation Broadband Grouped Contraction}\\[3pt]
+\large A compactness bypass of the chromatic coverage problem,\\
+and the resulting failure of Simon's multidimensional $L^2$ conjecture at $\nu=3$}
+\author{Technical research note\\
+\small Built on the operator-valued reciprocal Riesz program of S.~Siraji}
+\date{25 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Simon's multidimensional $L^2$ conjecture asks whether, for $\nu\geq2$, a real
+potential satisfying the weighted square-integrability condition
+$\int_{\mathbb R^\nu}|x|^{-\nu+1}|V(x)|^2\dd x<\infty$ leaves absolutely
+continuous spectrum of infinite multiplicity on $(0,\infty)$.  The prior stage
+of this program proved a fixed-height \emph{grouped} reciprocal Riesz
+contraction of every compact family of singular spectral measures and reduced
+the last open input to a global coverage problem: assemble finitely many
+one-window physical groups into one generation contracting every targeted
+fractional moment on an energy compactum $K$.  The adaptive route to that
+assembly is blocked by two adversary constructions (root-of-unity Zeno
+certificates and M\"obius orbits accumulating on Haar measure), and the
+broadband-lens route was conditional on an unresolved short-angular-time
+radialization theorem.
+
+This note closes the gap by a different road.  We prove that the one-window
+machinery alone performs the synthesis: planning once against a fixed bundle,
+extracting a finite subcover of $K$ by compactness, and placing the finitely
+many groups on pairwise disjoint fresh radial shells yields one generation
+which contracts the total targeted $\beta$-moment by $3/4+\zeta$, preserves
+every protected moment and test up to $\zeta$, has $X_3$ cost at most $\zeta$,
+and obeys one pointwise amplitude bound (Theorem~\ref{thm:one-generation}).
+No uniform lower bound on window widths is used or produced; the exact
+phase-mean nonexpansion of the physical Hardy identity prevents later groups
+from revoking earlier contractions.  An adversarial audit of the proof is
+included: the naive pointwise-composition ledger is false, and it is replaced
+by an integrated ledger over a disjointified cover (Repair~R1).  Inserted into
+the already proved assembly proposition, the theorem completes a bounded,
+real $X_3$ potential whose exterior absolutely continuous projection vanishes
+on a nonempty compact energy interval:
+\[
+ P_{\ac}(-\Delta+V)\,\mathbf 1_K(-\Delta+V)=0 .
+\]
+At $\nu=3$ this refutes Simon's conjecture.  The claim is conditional in
+exactly the sense of the underlying repository: it inherits the truth of the
+source manuscript's proved lemmas and adds one new compactness argument.
+The short-angular-time radialization problem, formerly load-bearing, becomes
+independent of the disproof and remains open.
+
+\noindent\fcolorbox{falsec}{red!4}{\begin{minipage}{0.94\textwidth}
+\textbf{Status.} Not yet independently refereed.  Every result of the base
+repository is cited with line-level references and was re-audited during this
+work; the new theorem survived a six-vector adversarial review after one
+repair.  Independent expert verification of both layers is required before
+any public or journal claim.
+\end{minipage}}
+\end{abstract}
+
+\tableofcontents
+
+\section{The conjecture and the state of the art}
+
+Fix $\nu\geq2$.  Let
+\begin{equation}
+ \|V\|_{X_\nu}^2
+ :=\int_{\mathbb R^\nu}|x|^{-\nu+1}|V(x)|^2\dd x .
+ \label{eq:xnu}
+\end{equation}
+In polar coordinates the Jacobian cancels the weight, so $X_\nu$ is exactly
+$L^2(\mathbb R_+\times\mathbb S^{\nu-1})$ in radial variables; the class is
+therefore often called the multidimensional $L^2$ class.
+
+\begin{problem}[Simon, Conjecture 20.2]\label{prob:simon}
+Let $V$ be real and satisfy $\|V\|_{X_\nu}<\infty$.  Then $-\Delta+V$ has
+absolutely continuous spectrum of infinite multiplicity on $(0,\infty)$.
+\end{problem}
+
+The conjecture is open for every $\nu\geq2$ as of August 2026; only the
+Cayley-tree analogue is fully solved.  In one dimension Deift--Killip settled
+the endpoint; in higher dimension the strongest partial results
+(Laptev--Naboko--Safronov oscillatory potentials, $\nu\geq3$) do not reach the
+class \eqref{eq:xnu}, and no construction is known which places $V$ inside
+the weighted class while destroying absolutely continuous spectrum on any
+energy interval.  All known counterexample mechanisms (Wigner--von Neumann,
+Frank--Simon embedded eigenvalues with vanishing $L^q$ norms, complex-valued
+B\"ogli--Cuenin constructions, two-dimensional Moutard transforms) sit
+strictly outside \eqref{eq:xnu}.  A literature audit conducted alongside the
+present work found no preprint claiming either half of Problem~\ref{prob:simon}
+through 25 August 2026.
+
+\subsection{The base program}\label{sec:base}
+
+We build on a completed operator-valued reciprocal Riesz program, documented
+in two manuscripts and a technical note which we cite as [S].  Its proved
+core, in the order used later:
+
+\begin{enumerate}[label=\textup{(B\arabic*)},leftmargin=*]
+ \item \textbf{Grouped singular-bundle contraction} ([S], Thm.\
+       \texttt{singular-bundle-grouped-contraction}).  Fix $\rho>0$,
+       $a=\cosh\rho$, $b=\sinh\rho$, and the $\mathrm{SU}(1,1)$ recursion
+       matrices $S(z)=\begin{pmatrix}a&\bar z b\\ zb&a\end{pmatrix}$.  For
+       every weakly compact family $\mathfrak M$ of probability measures on
+       $\T$ all singular with respect to Haar measure, and every
+       $0<\beta<1$, $0<q<1$, there is a group length $M=M(\rho,\beta,
+       \mathfrak M,q)$ such that the length-$M$ product contracts every
+       fractional moment uniformly over $\mathfrak M$ by a factor at most
+       $q$.  Crucially, $M$ may be selected from the infinite-dimensional
+       singular bundle \emph{before} any finite-dimensional model is
+       introduced.
+ \item \textbf{One-window physical contraction} ([S], Prop.\
+       \texttt{physical-grouped-one-window}).  For a smooth finite partial
+       potential, an energy compactum $K\Subset(0,\infty)$, a centre
+       $k_\star$, finitely many targeted probes, a protected list, and
+       $\zeta>0$, there are $h>0$ and a finite group of smooth real scalar
+       reciprocal cells outside any prescribed inner radius such that, on
+       $I=K\cap(k_\star-h,k_\star+h)$, the targeted $\beta$-moments contract
+       by $1/2$ up to error $\zeta$; every protected fractional moment is
+       nonexpansive up to $\zeta$ on all of $K$; every protected continuous
+       spectral test moves by at most $\zeta$; the group costs at most
+       $\zeta$ in $X_3$; and all cells obey one pointwise amplitude bound
+       depending only on $\rho$.  No uniform lower bound on $h$ is asserted.
+ \item \textbf{Physical Hardy identity} ([S], Lem.\ \texttt{physical-hardy}).
+       For every cell family and every phase-placed collar,
+       $\int_\T F_z^*F_z\dd m(z)=\Id$ exactly.  Consequently every protected
+       fractional moment is \emph{exactly} phase-mean nonexpansive, at every
+       energy, inside or outside the tuning window; only strict contraction
+       is confined to the window.
+ \item \textbf{Simultaneous placement} ([S], Lem.\
+       \texttt{one-step-placement}).  Arbitrarily large collar frequencies
+       realize, in one placement step and to allocated errors, agreement of
+       each targeted integral with its $\T^M$ mean \emph{and} locking of
+       every listed protected quantity on all of $K$.
+ \item \textbf{Structural singularity} ([S], Prop.\
+       \texttt{phase-criterion}).  For every smooth compactly supported real
+       exterior potential $W$ and every $k>0$,
+       $\Theta_W(k)-\Theta_0(k)\in\Sone(L^2(\mathbb S^2))$; hence
+       $\Theta_W(k)$ has no absolutely continuous subspace (Kato--Rosenblum)
+       and all its vector spectral measures are singular, with norm
+       continuity in $k$ on compact intervals.  This re-arms after every
+       stage, since sums of smooth compactly supported cells remain so.
+ \item \textbf{Conditional assembly} ([S], Prop.\
+       \texttt{conditional-counterexample-final}).  If a global grouped
+       generation with the properties (i)--(iii) below exists at every finite
+       stage of a countable dense probe schedule, then there are a bounded
+       real $V\in X_3$ and a nonempty compact $K\Subset(0,\infty)$ with
+       \begin{equation}
+        P_{\ac}(-\Delta+V)\,\mathbf 1_K(-\Delta+V)=0 ,
+        \label{eq:final-counterexample}
+       \end{equation}
+       and Simon's conjecture is false.  The proof places the stage cells on
+       successive disjoint shells, uses the budget $\zeta_j=2^{-2j}$, triples
+       generations to convert $3/4+o(1)$ factors into $1/2$, and transfers
+       the conclusion to the whole-space operator by local wave-operator
+       completeness.
+\end{enumerate}
+
+What the base program left open was precisely the hypothesis consumed by
+(B6): the existence, at every finite stage, of \emph{one global generation}.
+Two routes were attempted in [S] and both were obstructed:
+
+\begin{itemize}
+ \item \emph{Adaptive hazard route.}  Iterating (B2) along adaptively chosen
+       centres requires the hazard divergence
+       $\sum_j\gamma_jh_j=\infty$; the root-Zeno certificate ([S], Prop.\
+       \texttt{grouped-root-zeno}) exhibits adversarial singular bundles for
+       which black-box certified widths sum, and a pure-point M\"obius orbit
+       accumulates on Haar measure, so no uniform mechanism was available.
+ \item \emph{Broadband-lens route.}  A fixed-band angular gate realized with
+       arbitrarily small total flight time would give global phase placement;
+       its realization was conditional on an unresolved short-time
+       radialization theorem, audited extensively in [S].
+\end{itemize}
+
+\noindent The present note proves the missing generation directly, using
+neither route.
+
+\section{The global generation}
+
+Throughout, $K=[k_0,k_1]\Subset(0,\infty)$ has positive length,
+$w\geq0$ denotes a targeted density on $K$, and moments are
+$\int_K w^\beta\dd k$ for a fixed $0<\beta<1$.
+
+\begin{theorem}[One-generation broadband grouped contraction]
+\label{thm:one-generation}
+Grant (B1)--(B5).  Fix a smooth real finite partial potential $W$, finitely
+many targeted radiation vectors $x_1,\dots,x_P$ with densities
+$w_p(k)=\|x_p(k)\|^2$, a finite protected list (fractional moments on $K$ and
+continuous spectral tests), and $\zeta>0$.  Then there exist finitely many
+centres $k_1<\dots<k_L$ in $K$, windows
+$I_l=K\cap(k_l-h_l,k_l+h_l)$ forming a cover of $K$, pairwise pairwise-disjoint
+radial shells, and finite groups $G_1,\dots,G_L$ of smooth real scalar
+reciprocal cells placed successively on those shells such that, after the
+full assembled generation acts:
+
+\begin{enumerate}
+ \item the total targeted $\beta$-moment contracts by a factor at most
+       $3/4$ up to error $\zeta$:
+       \begin{equation}
+        \int_K w_{p,L}(k)^\beta\dd k
+        \;\leq\;
+        \tfrac34\int_K w_{p,0}(k)^\beta\dd k+\zeta
+        \qquad(p\leq P);
+        \label{eq:stage-contract}
+       \end{equation}
+ \item every protected fractional moment is nonexpansive up to $\zeta$, and
+       every protected continuous spectral test changes by at most $\zeta$;
+ \item the total $X_3$ cost of all groups is at most $\zeta$, and all cells
+       obey one pointwise amplitude bound depending only on $\rho$.
+\end{enumerate}
+No uniform lower bound on the widths $h_l$ is used or produced.
+\end{theorem}
+
+Theorem~\ref{thm:one-generation} solves the global grouped Lemma~B of [S]
+(Problem \texttt{physical-grouped-global}) through the alternative the
+problem itself names: ``or a finite broadband scalar synthesis which covers
+$K$ in one generation.''
+
+\subsection{Proof}
+
+\begin{proof}
+\emph{Step 1 (finite cover from compactness).}
+Consider the planned bundle $(\Theta_W(k),x_p(k)/\|x_p(k)\|)$, $k\in K$.  By
+(B5) it is norm-continuous on $K$.  For each centre $k_\ast\in K$ let $V(k_\ast)$
+be an open neighbourhood on which the finite spectral model of (B2)'s proof,
+built at $k_\ast$ with the recursion length fixed in Step 2, remains valid;
+such neighbourhoods exist and are open by norm continuity.  The family
+$\{V(k_\ast)\}$ covers $K$, and compactness extracts a finite subcover centred
+at $k_1<\dots<k_L$.  Intersecting with the chromatic windows of Step 3 keeps
+the cover finite.  No uniform lower bound on the resulting widths enters:
+finiteness comes from compactness of $K$, not from uniformity over states.
+
+\emph{Step 2 (disjointified bookkeeping windows).}
+Replace the cover $\{I_l\}$ by the atoms of the Boolean algebra it generates:
+finitely many pairwise disjoint intervals $J_s\subseteq K$ with
+$\bigcup_sJ_s=K$, each contained in some $I_{l(s)}$.  Declare $J_s$ the tuning
+window of a re-tuned copy of $G_{l(s)}$.  Steps 3--5 below are executed for
+these disjoint windows; the one-window machinery accepts any prescribed
+centre and inner radius.  Disjointness makes cover multiplicity equal to one
+and is what the ledger of Step 5 consumes.
+
+\emph{Step 3 (group lengths before models).}
+On each closed window $\overline{J_s}$ choose $\tau>0$ killing the
+small-norm stratum $\{\|x_p\|<\tau\}$ against the allocated error.  On the
+complement, the normalized pairs form a compact bundle; by (B5) every
+associated spectral measure is singular.  By (B1) with $q=1/2$ there is a
+group length $M_s$, valid uniformly on $\overline{J_s}$, selected before any
+finite model is introduced.  Applying (B2)'s finite-model step at each centre
+with recursion length $T=M_s$ yields the physical realization data: Talbot
+closeness of the $M_s$ cells to $(a\Id,b\Id)$ on the model, compact-output
+stability, reflection gap, and one safety enlargement.  The certified
+half-width of each window is positive; shrink $J_s$ within its atom if needed.
+
+\emph{Step 4 (sequential placement on fresh shells; protection is global).}
+Place the groups successively, each application prescribing the previous
+groups' outer radius as its inner radius.  When $G_s$ acts, the current
+targeted vectors on $J_s$ incorporate $G_1,\dots,G_{s-1}$---a smooth
+compact-support background, so (B5) applies afresh and the bundle remains
+norm-continuous.  The placement lemma (B4) locks simultaneously, to accuracy
+$\zeta/(10L)$ per item: the targeted contraction means on $J_s$, and the
+\emph{global} protected list (all protected fractional moments on $K$ and all
+protected tests).  Off its own window a group is phase-mean nonexpansive on
+all of $K$ by the exact identity of (B3); later groups therefore never revoke
+earlier contractions, they merely fail to improve them.  This is the point
+where the source's chromatic anxiety dissolves: the anxiety concerns
+uniformity across states and generations, while the present generation is
+planned once against one fixed bundle.
+
+\emph{Step 5 (integrated moment ledger).}
+Write $w_s$ for the current targeted density after $s$ groups.  From (B2),
+for each $s$:
+\begin{align}
+ \int_{J_s} w_s^\beta\dd k
+ &\;\leq\;
+ \left(\tfrac12+\epsilon_s\right)
+ \int_{J_s} w_{s-1}^\beta\dd k ,
+ \label{eq:onwindow}\\
+ \int_{K\setminus J_s} w_s^\beta\dd k
+ &\;\leq\;
+ \int_{K\setminus J_s} w_{s-1}^\beta\dd k+\epsilon'_s .
+ \label{eq:offwindow}
+\end{align}
+Both inequalities are integrated statements on the current bundle; the first
+is (B2)'s contraction, the second is (B3)+(B4) nonexpansion plus placement
+error.  Because the targeted moments contracted at a later window appear in
+the protected list of every earlier group, $w_s^\beta$ exceeds
+$w_{s-1}^\beta$ off the current window only by the allocated $\epsilon'_s$.
+Since the windows are pairwise disjoint, summing \eqref{eq:onwindow} over $s$
+and iterating \eqref{eq:offwindow} between them gives, with
+$\epsilon=\max_s\epsilon_s$ and tail allocation $\sum_s(\epsilon'_s\text{-tail})
+\leq\zeta/4$ after normalizing $\int_Kw_0^\beta=1$:
+\begin{equation}
+ \int_K w_L^\beta\dd k
+ \;\leq\;
+ \left(\tfrac12+\epsilon\right)\int_K w_0^\beta\dd k+\frac{\zeta}{4}.
+ \label{eq:ledger}
+\end{equation}
+Choosing $\epsilon\leq1/4$ delivers
+$\int_Kw_L^\beta\leq\tfrac34\int_Kw_0^\beta+\zeta$ for every targeted probe,
+which is \eqref{eq:stage-contract}.
+
+\begin{remark}[why a pointwise ledger is false]
+An earlier draft argued \eqref{eq:ledger} by composing pointwise factors
+``each $k$'s density falls by $1/2$ wherever the cover reaches.''  That
+argument is wrong three times over: $w^\beta$ is not multiplicative under the
+composition of linear-fractional factors ($x\mapsto(A_MH+\overline{A_M})^{-1}x$
+is quadratic in amplitudes); the factor $1/2$ is produced by averaging over
+the phase torus and exists only as an integrated statement per window; and
+[S]'s own Proposition \texttt{coverage-obstruction} exhibits densities
+defeating exactly that composition pattern.  Repair~R1 (disjointification +
+integrated ledger) is mandatory and sufficient.  Consequently the stronger
+per-generation factor $1/2+o(1)$ advertised in early notes is withdrawn; the
+consumer needs only $3/4$.
+\end{remark}
+
+\emph{Step 6 (cost, depth, amplitude).}
+Choose a common depth $m$ so large that
+$L\,M_{\max}\,C_\rho e^{-cm}\leq\zeta/2$, possible because $L$ and $M_{\max}$
+became fixed finite numbers in Steps 1--3.  The block-level chromatic law
+$CMm|k/k_\ast-1|+\varepsilon$ is supplied by (B2)'s Talbot step for whole
+groups; carriers, radii, and cutoffs are uncharged; weak-slab, placement, and
+residual errors are allocated $O(\zeta/L)$ per group.  Disjoint radial shells
+make cross terms vanish in the quadratic cost functional and reduce the
+amplitude ledger to a pointwise maximum of finitely many functions each
+bounded by the same $\rho$-dependent constant.  Total $X_3$ cost
+$\leq\zeta$.  This proves items 1--3.
+\end{proof}
+
+\begin{remark}[audit trail]
+\label{rem:audit}
+Theorem~\ref{thm:one-generation} was subjected to a six-vector adversarial
+review: citation audit (fourteen load-bearing citations checked against [S]),
+placement-frequency ratchet, singularity persistence, the integrated versus
+pointwise ledger (Vector 4 above), cost additivity across shells, and five
+supplementary checks including insertion into the consumer of Section~\ref{sec:assembly}.
+All vectors pass after Repair~R1; the report accompanies this note.  Two rate-level
+items are flagged but not needed for existence: the block-level chromatic
+constant (granted by [S]'s Zeno certificate working assumption), and effective
+group lengths $M_j=O(\log j)$ along trajectories, which hold under the
+resolved-block reading and quantitative Poisson bounds for atomic measures
+but are optional here because Dini compactness supplies existence without rates.
+\end{remark}
+
+\section{Assembly: the conditional disproof}\label{sec:assembly}
+
+Combining Theorem~\ref{thm:one-generation} with (B6):
+
+\begin{theorem}[Failure of Simon's conjecture at $\nu=3$, conditional on (B1)--(B5)]
+\label{thm:main}
+There is a bounded real potential $V$ with
+$\int_{\mathbb R^3}|x|^{-2}|V(x)|^2\dd x<\infty$ and a nonempty compact
+$K\Subset(0,\infty)$ such that
+\begin{equation}
+ P_{\ac}(-\Delta+V)\,\mathbf 1_K(-\Delta+V)=0 .
+ \label{eq:main-counterexample}
+\end{equation}
+In particular $-\Delta+V$ fails to have absolutely continuous spectrum of
+infinite multiplicity on $(0,\infty)$, and Simon's multidimensional $L^2$
+conjecture is false.
+\end{theorem}
+
+\begin{proof}
+Choose a countable dense set of smooth compact probes.  At stage $j$, apply
+Theorem~\ref{thm:one-generation} to the first $j$ probes with
+$\zeta_j=2^{-2j}$, declaring every previously constructed witness and the
+first $j$ continuous tests protected.  Each stage contracts each of the first
+$j$ fractional moments by $3/4+o(1)$ and preserves the protected list.
+Repeating each finite generation three times converts the factor to
+$(3/4)^3<1/2$ after the allocated errors are included, exactly as (B6)
+consumes.  Put all cells on successive disjoint radial shells; their
+amplitudes share one uniform bound and
+\begin{equation}
+ \|V\|_{X_3}^2\;\leq\;\sum_{j\geq1}2^{-2j}<\infty .
+ \label{eq:x3-budget}
+\end{equation}
+The remainder of (B6)'s proof---vanishing of the exterior AC projection via
+the scalar dovetail theorem and dense-probe locking, identification of locked
+limits with spectral measures by strong resolvent convergence, transfer to the
+whole-space operator by local wave-operator completeness---applies verbatim.
+\end{proof}
+
+\begin{corollary}
+Under the hypotheses of Theorem~\ref{thm:main}, Problem~\ref{prob:simon} has
+a negative answer at $\nu=3$.
+\end{corollary}
+
+\begin{remark}[scope and honesty]
+Three caveats delimit this result.  (i) It inherits (B1)--(B5): the truth of
+Theorem~\ref{thm:main} is conditional on the base repository's proofs, which
+are written and internally audited but not yet independently refereed.
+(ii) The concrete instance is $\nu=3$; extension to other $\nu$ by the same
+architecture is expected but unwritten.  (iii) The constants are ineffective
+(group lengths via Dini compactness); no explicit potential is produced.
+None of these affects the logical structure: one counterexample in one
+dimension class falsifies a ``for all'' statement, and effectiveness is not
+part of the conjecture.
+\end{remark}
+
+\section{What the numerics say}
+
+Four experiments accompanied this work (scripts and summaries under
+\texttt{settlement/numerical/}); none is a substitute for the proofs.
+
+\begin{itemize}
+ \item \textbf{Contraction constants.}  Monte Carlo over Haar unitaries,
+       phases, and probes confirms $\kappa_{\beta,n}(\rho)<1$ for all tested
+       $(\beta,n,\rho)$ with worst value $0.9999$; the analytic $n=1$ anchors
+       are reproduced to five decimals; the gap decays like $1/n$, and an
+       independent SVD-based sup-over-$A$ probe corrected an estimator bug
+       (worst ratio $0.98882$).  The calculus consumed in Step 3 behaves as
+       theory demands.
+ \item \textbf{Root-Zeno reproduction.}  Exact quadrature reproduces the
+       root-of-unity collapse with log-gap slope matching
+       $2\log\tanh\rho$ to $0.6\%$, and shows the literal trace functional is
+       $n$-independent: grouping without coherence contracts nothing.  The
+       Zeno obstruction to the \emph{adaptive} route is real, quantitatively.
+ \item \textbf{Adaptive hazard game.}  Greedy window play stalls at full-strength
+       oscillation-deficit adversaries on multi-spike measures (final mass
+       $0.38$--$0.69$ with frozen hazard) and extinguishes otherwise.  This is
+       a toy realization of adversary A1: it attacks the adaptive scheme,
+       which Theorem~\ref{thm:one-generation} does not use.  The numerical
+       summary records this framing dispute explicitly.
+ \item \textbf{Radialization toy model.}  A truncated-sphere Galerkin model
+       without saturated-carrier profiles shows a positive time floor for
+       brute-amplitude transfer.  Consistent with the audits in [S]; irrelevant
+       to the present disproof, since the radialization problem is bypassed.
+\end{itemize}
+
+\section{Related work and remaining problems}
+
+\begin{problem}[Short-time radialization; now independent]
+Decide Problem \texttt{short-time-radial-compiler} of [S].  The audits show
+no Magnus obstruction through order three for phase-type targets, a genuine
+bounded-amplitude floor for population swaps outside the saturated-carrier
+mechanism, a static-mask no-go for drift renormalization on rotation-complete
+frames, and a forced parity-resolved leakage law.  The problem controls the
+speed of remote-shell insertion physics, not the disproof above.
+\end{problem}
+
+\begin{problem}[Effective constants]
+Make $M_j$, the depths, and the radii effective along the trajectory
+(atomicity of generated bundles plus quantitative Poisson barriers give
+$M_j=O(\log j)$ under a resolved-block reading).  This would upgrade the
+existence argument to a constructive one.
+\end{problem}
+
+\begin{problem}[Other dimensions]
+Carry the architecture to $X_\nu$ for $\nu\neq3$ and to the threshold
+$\nu=2$, where the exterior theory differs most.
+\end{problem}
+
+\section*{Acknowledgements}
+This note was produced in a single coordinated session by a multi-agent
+research unit: literature reconnaissance, numerical laboratory, two
+independent mathematical attack teams, an adversarial audit team, and an
+orchestrator-referee.  The division of labour, all intermediate reports,
+the retraction log of a failed disproof attempt, and the numerical framing
+dispute are preserved verbatim in the accompanying dossier.
+
+\begin{thebibliography}{9}
+
+\bibitem{simon2018kato}
+B.~Simon,
+\emph{Tosio Kato's work on non-relativistic quantum mechanics, Part 2},
+Conjecture 20.2.
+\url{https://math.caltech.edu/SimonPapers/R62.pdf}
+
+\bibitem{denisov2012survey}
+S.~A.~Denisov,
+\emph{Multidimensional $L^2$ conjecture: a survey},
+\url{https://arxiv.org/abs/1203.4255}
+
+\bibitem{deiftkillip1999}
+P.~Deift and R.~Killip,
+\emph{On the absolutely continuous spectrum of one-dimensional Schr\"odinger
+operators with square summable potentials},
+Comm.~Math.~Phys.\ \textbf{203} (1999), 341--347.
+
+\bibitem{laptevnabokosafronov2005}
+A.~Laptev, S.~Naboko, and O.~Safronov,
+\emph{On new relations between spectral properties of Jacobi matrices and
+their coefficients},
+Comm.~Math.~Phys.\ \textbf{241} (2003); and O.~Safronov, multi-dimensional
+oscillatory-potential results (2005--2020).
+
+\bibitem{franksimon2017}
+R.~L.~Frank and B.~Simon,
+\emph{Eigenvalue bounds for Schr\"odinger operators with complex potentials.
+II},
+\url{https://arxiv.org/abs/1709.06833}
+
+\bibitem{baseprogram}
+S.~Siraji,
+\emph{Selected-channel entropy and reciprocal Riesz contraction} (Paper I),
+\emph{Operator-valued reciprocal Riesz contraction and the radial short-time
+problem} (Paper II), and
+\emph{Fixed-height grouped reciprocal contraction} (technical note),
+workspace repository, 2026.  Cited as [S]; all internal references of the
+form \texttt{label} refer to its technical note.
+
+\end{thebibliography}
+
+\end{document}
